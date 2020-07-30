@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/LyricsPageTitle"
+        android:textSize="35dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="@string/Lyrics"/>
+
+    <TextView
+        android:id="@+id/displayingFor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/LyricsPageTitle"
+        />
+
+    <TextView
+        android:id="@+id/lyrics"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/displayingFor"
+        />
+
+    <Button
+        android:id="@+id/SaveSongButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lyrics"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="40dp"
+
+
+        android:layout_toRightOf="@+id/returnButt"
+        android:text="@string/saveSongbutt" />
+
+    <Button
+        android:id="@+id/returnButt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lyrics"
+        android:layout_alignParentRight="true"
+
+        android:layout_marginRight="40dp"
+        android:text="@string/returnButt" />
+
+    <ProgressBar style="?android:attr/progressBarStyleHorizontal"
+        android:id ="@+id/progBar"
+        android:visibility="invisible"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        />
+
+</RelativeLayout>
+</ScrollView>

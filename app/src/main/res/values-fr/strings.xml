@@ -9,4 +9,20 @@
     <string name="DylanWilc">By: Dylan Wilcox</string>
     <string name="GeoDataSource">Geo data source</string>
     <string name="CarmenL">By: Carmen Luong</string>
+    <string name="SongSearchPageName">Song Lyric Search</string>
+    <string name="enterYaEmail">For research purposes: Please enter your email:</string>
+    <string name="yourEmailHere">"Your email here: "</string>
+    <string name="lyricContinueButt">Continue to search page</string>
+    <string name="lyricemailtoast">We won\'t send you emails! This is for research purposes only.</string>
+    <string name="apps_name">Final Project</string>
+    <string name="enterSong">"Song Name: "</string>
+    <string name="type_here">"Type here: "</string>
+    <string name="enterGroup">"Enter artist or group: "</string>
+    <string name="lyricsearchbutton">Search!!</string>
+    <string name="favorites">Look at your favorites!</string>
+    <string name="googleit">Or try googling it!</string>
+    <string name="Lyrics">Lyrics</string>
+    <string name="saveSongbutt">Save this search?</string>
+    <string name="FavoritesP">Your Favorites</string>
+    <string name="returnButt">Back to search</string>
 </resources>

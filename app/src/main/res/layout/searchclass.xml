@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/lyricsimg"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:layout_below="@+id/mainemailpagetextview"
+        android:layout_marginTop="-59dp"
+
+        app:srcCompat="@drawable/music_banner" />
+
+    <TextView
+        android:id="@+id/mainemailpagetextview"
+        android:textAlignment="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/SongSearchPageName"
+        android:textSize="35dp" />
+
+    <TextView
+    android:id="@+id/enterSong"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignBottom="@id/lyricsimg"
+    android:layout_marginBottom="-14dp"
+    android:text="@string/enterSong"
+    android:textSize="19dp" />
+
+    <EditText
+        android:id="@+id/songNameText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/type_here"
+        android:inputType="textPersonName"
+        android:layout_below="@id/enterSong"/>
+
+    <TextView
+        android:id="@+id/enterGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/songNameText"
+        android:layout_marginBottom="-14dp"
+        android:text="@string/enterGroup"
+        android:textSize="19dp" />
+
+    <EditText
+        android:id="@+id/ArtistNameText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/type_here"
+        android:inputType="textPersonName"
+        android:layout_below="@id/enterGroup"/>
+
+    <Button
+    android:id="@+id/letsGo"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/ArtistNameText"
+    android:text="@string/lyricsearchbutton"/>
+
+    <Button
+        android:id="@+id/favouritesTab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/letsGo"
+
+        android:text="@string/favorites"/>
+
+
+    <ImageButton
+        android:id="@+id/googleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="105dp"
+        android:layout_below="@id/favouritesTab"
+
+        android:src="@drawable/googlei" />
+    <ImageButton
+        android:id="@+id/helpButton"
+        android:layout_width="303dp"
+        android:layout_height="105dp"
+        android:layout_below="@id/favouritesTab"
+android:layout_toRightOf="@+id/googleButton"
+        android:src="@drawable/helpbutt" />
+
+
+
+
+
+
+</RelativeLayout>
+</ScrollView>
