@@ -22,8 +22,9 @@
 
     <ImageView
         android:layout_width="422dp"
-        android:layout_height="162dp"
-        android:src="@drawable/banner"/>
+        android:layout_height="162dp" />
+<!--        android:src="@drawable/banner"-->
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
