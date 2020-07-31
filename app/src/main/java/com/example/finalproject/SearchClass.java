@@ -35,6 +35,8 @@ public class SearchClass extends AppCompatActivity {
         {Intent goToLyrics = new Intent(SearchClass.this, LyricsPage.class);
             goToLyrics.putExtra("songNameSaved", songName.getText().toString() );
             goToLyrics.putExtra("artistNameSaved", artist.getText().toString());
+            songName.setText("");
+            artist.setText("");
             startActivity(goToLyrics);
         }
         );
@@ -49,13 +51,15 @@ public class SearchClass extends AppCompatActivity {
             String url = "https://www.google.ca/search?q=" + songName.getText().toString() + "+" + artist.getText().toString();
             url = url.replaceAll(" ", "+");
             Intent goToG = new Intent(Intent.ACTION_VIEW);
+            songName.setText("");
+            artist.setText("");
             goToG.setData(Uri.parse(url));
             startActivity(goToG);
         } );
 
         help.setOnClickListener(v->{
             AlertDialog.Builder alterDialogueBilder = new AlertDialog.Builder(SearchClass.this);
-            alterDialogueBilder.setMessage("Simply type in your desired song and the artist or groups name that you're looking for, then hit search!\n\nnn  You can select your favorites, look at them later, and if theres anything that you cant find seem to find through us, you can google it!")
+            alterDialogueBilder.setMessage("Simply type in your desired song and the artist or group's name that you're looking for, then hit search!\n\n  You can select your favorites, look at them later, and if theres anything that you cant find seem to find through us, you can google it!")
                     .setPositiveButton("Okay", (Click, arg) -> {
                         Intent goBack = new Intent(SearchClass.this, SearchClass.class);
                         startActivity(goBack);
