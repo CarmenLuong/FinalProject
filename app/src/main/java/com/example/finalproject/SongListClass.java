@@ -64,7 +64,7 @@ public class SongListClass extends AppCompatActivity {
             SongAndArtist selected = (SongAndArtist) list.getItemAtPosition(position);
 
             alterDialogueBilder.setTitle("Do you want to delete this?")
-                    .setMessage("The selected row is: " + (list.indexOfChild(view) + 1) + "\nThe database id is: " + id +"\nSong name: " +songg +"\nArtist: "+artists)
+                    .setMessage("The selected row is: " + (list.indexOfChild(view) + 1) + "\nThe database id is: " + id +"\nSong name: " +elements.get(position).getSong() +"\nArtist: "+elements.get(position).getArtist())
                     .setPositiveButton("Yes", (Click, arg) -> {
 
                         elements.remove(position);

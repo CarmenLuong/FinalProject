@@ -126,10 +126,11 @@ public class LyricsPage extends AppCompatActivity {
             super.onPostExecute(s);
 
             TextView lyricst = findViewById(R.id.lyrics);
+            TextView lyricTitle = findViewById(R.id.LyricsPageTitle);
 
             if (lyricss==null) {
                 AlertDialog.Builder alterDialogueBilder = new AlertDialog.Builder(LyricsPage.this);
-                alterDialogueBilder.setTitle("Could not generate results for:\nSong: \"" + songName + "\", Artist: \"" + artistName + "\"")
+                alterDialogueBilder.setTitle("Could not generate results for:").setMessage("\nSong: \"" + songName + "\", Artist: \"" + artistName + "\"")
                         .setPositiveButton("Okay", (Click, arg) -> {
                             Intent goBack = new Intent(LyricsPage.this, SearchClass.class);
                             startActivity(goBack);
@@ -137,6 +138,7 @@ public class LyricsPage extends AppCompatActivity {
             } else {
 
                 lyricst.setText(lyricss);
+                lyricTitle.setText(songName);
                 prog.setVisibility(View.INVISIBLE);
 
             }
