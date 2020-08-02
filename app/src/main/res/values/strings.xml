@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FinalProject</string>
+    <string name="app_name">Final Project</string>
     <string name="soccerHighlights">Soccer match Highlights</string>
     <string name="JoshMpaka">By: Joshua Mpaka</string>
     <string name="songLyricsSearch">Song Lyrics Search</string>
@@ -24,4 +24,13 @@
     <string name="saveSongbutt">*Favorite this*</string>
     <string name="FavoritesP">Your Favorites</string>
     <string name="returnButt">Back to search</string>
+    <string name="soccIconName">Match Highlights</string>
+    <string name="GEO">GEO Data Source</string>
+    <string name="deezI">Deezer Song Lyrics</string>
+    <string name="aboutThisProject">About this project</string>
+    <string name="songlyrichelpitem">This is the song lyric search activity, written by : Devynn Lyle</string>
+    <string name="slhelpitem">Song Lyric Search Item</string>
+    <string name="open" />
+    <string name="close" />
+    <string name="menuItem">Options</string>
 </resources>

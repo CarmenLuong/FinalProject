@@ -13,14 +13,18 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
 
+
         <activity android:name=".EmptyActivity" />
         <activity android:name=".FavoriteDisplayed" />
         <activity android:name=".SongListClass" />
         <activity android:name=".LyricsPage" />
-        <activity android:name=".SearchClass"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".SongSearch"
-            android:windowSoftInputMode="stateHidden"/>
+        <activity
+            android:name=".SearchClass"
+            android:windowSoftInputMode="stateHidden"
+            />
+        <activity
+            android:name=".SongSearch"
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -8,6 +8,7 @@
     android:layout_height="match_parent"
     android:id="@+id/fragDets">
 
+
 <TextView
     android:id="@+id/fragmentTitle"
     android:textAlignment="center"

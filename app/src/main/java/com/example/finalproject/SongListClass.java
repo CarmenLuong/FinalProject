@@ -1,25 +1,38 @@
 package com.example.finalproject;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class SongListClass extends AppCompatActivity {
+public class SongListClass extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     public static final String ITEM_POSITION = "POSITION";
     public static final String ITEM_LYRICS = "LYRICS";
    public static final String ITEM_SONGN = "SONGNAME";
@@ -37,6 +50,19 @@ public class SongListClass extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.songlistclass);
+
+        Toolbar tBar = (Toolbar)findViewById(R.id.TB);
+        setSupportActionBar(tBar);
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,
+                drawer, tBar,R.string.open, R.string.close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+
+        navigationView.setNavigationItemSelectedListener(this);
 
 
 
@@ -77,6 +103,87 @@ public class SongListClass extends AppCompatActivity {
     }
     protected void deleteMessage(SongAndArtist saa) {
         db.delete(MyOpener.TABLE_NAME, MyOpener.COL_ID + "= ?", new String[]{Long.toString(saa.getId())});
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch(item.getItemId())
+        {
+
+            case R.id.soccermatchitem:
+                Intent goToSoccer = new Intent(this, MainActivity.class);
+                startActivity(goToSoccer);
+                break;
+            case R.id.geodatasourceitem:
+
+                Intent goToGeo = new Intent(this, MainActivity.class);
+                startActivity(goToGeo);
+                break;
+            case R.id.deezersongsearchitem:
+                Intent goToDeezer = new Intent(this, MainActivity.class);
+                startActivity(goToDeezer);
+                break;
+            case R.id.help_item:
+                String message= getResources().getString(R.string.songlyrichelpitem);
+                Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+                break;
+        }
+
+        return true;
+    }
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_items, menu);
+        return true;
+    }
+    @Override
+    public boolean onNavigationItemSelected( MenuItem item) {
+        AlertDialog.Builder alterDialogueBilder;
+        String message = null;
+
+        switch(item.getItemId())
+        {
+            case R.id.instructions:
+                alterDialogueBilder = new AlertDialog.Builder(this);
+                alterDialogueBilder.setMessage("Simply type in your desired song and the artist or group's name that you're looking for, then hit search!\n\nYou can select your favorites, look at them later, and if theres anything that you cant find seem to find through us, you can google it!")
+                        .setPositiveButton("Okay", (Click, arg) -> {
+                            Intent goBack = new Intent(this, SongSearch.class);
+                            startActivity(goBack);
+                        }).create().show();
+                break;
+            case R.id.abouttheapi:
+                String url = "https://lyricovh.docs.apiary.io/#";
+
+                Intent goToapi = new Intent(Intent.ACTION_VIEW);
+                goToapi.setData(Uri.parse(url));
+                startActivity(goToapi);
+                break;
+            case R.id.donate:
+
+                final EditText input = new EditText(this);
+                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.MATCH_PARENT);
+                alterDialogueBilder = new AlertDialog.Builder(this);
+                input.setLayoutParams(lp);
+                alterDialogueBilder.setView(input);
+                alterDialogueBilder.setTitle("Please give generously");
+                alterDialogueBilder.setMessage("How much money do you want to donate?")
+                        .setPositiveButton("Thank you", (Click, arg) -> {
+                            Intent goBack = new Intent(this, SongSearch.class);
+                            startActivity(goBack);
+                        }).setNegativeButton("Cancel", (click, arg) -> {
+                }).create().show();
+
+                break;
+        }
+
+        DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return false;
+
     }
 
     private void loadDataFromDatabase() {
