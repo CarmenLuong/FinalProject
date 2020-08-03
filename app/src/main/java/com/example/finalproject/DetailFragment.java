@@ -35,11 +35,16 @@ public class DetailFragment extends Fragment {
         TextView gameTitle = (TextView)result.findViewById(R.id.gameHeader);
         gameTitle.setText(dataFromActivity.getString(SoccerMain.ITEM_SELECTED));
 
+        TextView gameDate = (TextView)result.findViewById(R.id.date);
+        gameDate.setText(dataFromActivity.getString(SoccerMain.ITEM_DATE));
+
         TextView team1 = (TextView)result.findViewById(R.id.team1);
         team1.setText(dataFromActivity.getString(SoccerMain.ITEM_TEAM1));
 
         TextView team2 = (TextView)result.findViewById(R.id.team2);
         team2.setText(dataFromActivity.getString(SoccerMain.ITEM_TEAM2));
+
+        Button addToFav = (Button)result.findViewById(R.id.favourite);
 
 
 

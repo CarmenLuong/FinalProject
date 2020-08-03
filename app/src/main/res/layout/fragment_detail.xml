@@ -47,6 +47,13 @@
             android:text="@string/url"
             android:textAlignment="center" />
 
+        <Button
+            android:id="@+id/favourite"
+            android:layout_width="match_parent"
+            android:layout_height="85dp"
+            android:text="Add to favourites"
+            />
+
     </LinearLayout>
 
 </FrameLayout>
