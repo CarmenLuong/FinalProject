@@ -9,4 +9,9 @@
     <string name="DylanWilc">By: Dylan Wilcox</string>
     <string name="GeoDataSource">Geo data source</string>
     <string name="CarmenL">By: Carmen Luong</string>
+
+    <string name="Game_Title_header">GameTitle</string>
+    <string name="team1">equipe 1</string>
+    <string name="team2">equipe 2</string>
+    <string name="url">Regarder les temps forts du match</string>
 </resources>

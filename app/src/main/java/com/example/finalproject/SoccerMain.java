@@ -3,6 +3,7 @@ package com.example.finalproject;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
@@ -29,6 +30,16 @@ public class SoccerMain extends AppCompatActivity {
     SoccerAdapter adp;
     ListView myList;
     TextView scores;
+    String team1, team2;
+    String title;
+    String date;
+    String game_url;
+    public static final String ITEM_SELECTED = "GAME";
+    public static final String ITEM_TEAM1 = "team1";
+    public static final String ITEM_TEAM2 = "team2";
+    public static final String ITEM_DATE = "date";
+    public static final String ITEM_URL = "match";
+    boolean isTablet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +50,8 @@ public class SoccerMain extends AppCompatActivity {
         score.execute("https://www.scorebat.com/video-api/v1/");
 
         myList = findViewById(R.id.FinalProjectList);
+
+        isTablet = findViewById(R.id.frame1) != null;
 
         adp = new SoccerAdapter(this,R.layout.game_score,matchList);
         adp.setListData(matchList);
@@ -54,17 +67,42 @@ public class SoccerMain extends AppCompatActivity {
         long newId = db.insert(SoccerOpener.TABLE_NAME,null, newRowValues);
         soccerScoreObject scoreEntry = new soccerScoreObject(String.valueOf(newId),temp.getGameTitle());
 
-        matchList.add(scoreEntry);
-        adp.notifyDataSetChanged();
+
+        myList.setOnItemClickListener((list, view, position, id) -> {
+            //Create a bundle to pass data to the new fragment
+            Bundle dataToPass = new Bundle();
+            dataToPass.putString(ITEM_SELECTED, String.valueOf(matchList.get(position).getGameTitle()));
+            dataToPass.putString(ITEM_TEAM1, String.valueOf(matchList.get(position).getTeam1()));
+            dataToPass.putString(ITEM_TEAM2, String.valueOf(matchList.get(position).getTeam2()));
+            dataToPass.putString(ITEM_DATE, String.valueOf(matchList.get(position).getDate()));
+            dataToPass.putString(ITEM_URL, String.valueOf(matchList.get(position).getUrl()));
+
+            if(isTablet)
+            {
+                DetailFragment dFragment = new DetailFragment();
+                dFragment.setArguments( dataToPass );
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.frame1, dFragment)
+                        .commit();
+            }
+            else //isPhone
+            {
+                Intent nextActivity = new Intent(SoccerMain.this, EmptyActivity.class);
+                nextActivity.putExtras(dataToPass);
+                startActivity(nextActivity);
+            }
+        });
+
+
+
+
     }
 
 
     class ScoreQuery extends AsyncTask<String, Integer, String> {
 
-        String firstTeam, secondTeam;
-        String title;
-        String date;
-        String game_url;
+
         String link = "https://www.scorebat.com/video-api/v1/";
 
 
@@ -94,15 +132,25 @@ public class SoccerMain extends AppCompatActivity {
                 String result = sb.toString();
 
                 JSONArray array = new JSONArray(result);
-                for(int i=0;i<array.length();i++){
+                for(int i = 0; i < array.length();i++) {
                     JSONObject jsonObject = array.getJSONObject(i);
                     title = jsonObject.getString("title");
-                    date = jsonObject.getString("date");
                     game_url = jsonObject.getString("url");
+                    date = jsonObject.getString("date");
 
-                    soccerScoreObject games = new soccerScoreObject(title,date,game_url);
+                    JSONObject s1 = jsonObject.getJSONObject("side1");
+                    JSONObject s2 = jsonObject.getJSONObject("side2");
+
+                    team1 = s1.getString("name");
+                    team2 = s2.getString("name");
+
+                   soccerScoreObject matchTitles = new soccerScoreObject(title,date,game_url,team1,team2);
+
+                   matchList.add(matchTitles);
                 }
-                Log.i("MainActivity", "The title:  " + title + " date: " + date + " url :" + game_url) ;
+
+                Log.i("MainActivity", "The title:  " + title  + " url :" + game_url + " date: " + date + " team1: " +
+                        team1 + " team2: " + team2) ;
 
             }
             catch (Exception e)
@@ -119,12 +167,12 @@ public class SoccerMain extends AppCompatActivity {
 
         }
 
+
+
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            scores = findViewById(R.id.games);
-
-//            scores.setText(matchTitle);
+            adp.notifyDataSetChanged();
 
 
         }
@@ -147,12 +195,14 @@ public class SoccerMain extends AppCompatActivity {
         {
             String match = results.getString(titleColIndex);
             long id = results.getLong(idColIndex);
+            String date = results.getString(dateColIndex);
+            String thisUrl = results.getString(urlColIndex);
 
-            //add the new Contact to the array list:
-            matchList.add(new soccerScoreObject(String.valueOf(id), match));
+//            matchList.add(new soccerScoreObject(id,match,date,thisUrl));
+
+
         }
 
-//        printCursor(results, 2);
 
 
     }

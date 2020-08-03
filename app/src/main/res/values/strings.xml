@@ -8,4 +8,9 @@
     <string name="DylanWilc">By: Dylan Wilcox</string>
     <string name="GeoDataSource">Geo data source</string>
     <string name="CarmenL">By: Carmen Luong</string>
+
+    <string name="Game_Title_header">GameTitle</string>
+    <string name="team1">Team 1</string>
+    <string name="team2">Team 2</string>
+    <string name="url">Watch Match highlights</string>
 </resources>

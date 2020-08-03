@@ -12,14 +12,15 @@ import java.util.ArrayList;
 
 public class SoccerAdapter extends BaseAdapter {
 
-    private ArrayList<soccerScoreObject> matchList = new ArrayList<>();
+    private ArrayList<soccerScoreObject> matchList;
     private Context context;
     private int layoutRes;
+    TextView score;
 
-    SoccerAdapter(Context context, int layoutRes, ArrayList<soccerScoreObject> matchList){
+    SoccerAdapter(Context context,int layoutRes, ArrayList<soccerScoreObject> matchList){
         this.context = context;
-        this.layoutRes = layoutRes;
         this.matchList = matchList;
+        this.layoutRes = layoutRes;
     }
 
 
@@ -36,7 +37,8 @@ public class SoccerAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return matchList.get(position).getMatch_id();
+
+        return matchList.get(position).getId();
     }
 
     @Override
@@ -46,15 +48,16 @@ public class SoccerAdapter extends BaseAdapter {
 
 
         soccerScoreObject matchScore = (soccerScoreObject) getItem(position);
+        LayoutInflater inflater = ((Activity) context).getLayoutInflater();
 
         if(view == null) {
-            LayoutInflater inflater = ((Activity) context).getLayoutInflater();
+
             view = inflater.inflate(R.layout.game_score, parent, false);
-            TextView displayedScore = view.findViewById(R.id.games);
 
-            displayedScore.setText(matchScore.getGameTitle());
+
         }
-
+        TextView displayedScore = view.findViewById(R.id.games);
+        displayedScore.setText(matchScore.getGameTitle());
 
         return view;
     }
