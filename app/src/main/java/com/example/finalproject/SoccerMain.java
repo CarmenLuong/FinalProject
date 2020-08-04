@@ -1,14 +1,19 @@
 package com.example.finalproject;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +21,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -48,6 +55,7 @@ public class SoccerMain extends AppCompatActivity implements NavigationView.OnNa
     public static final String ITEM_TEAM2 = "team2";
     public static final String ITEM_DATE = "date";
     public static final String ITEM_URL = "match";
+    public static final String ITEM_IS_FAVORITE = "favorites";
     boolean isTablet;
 
     @Override
@@ -65,6 +73,16 @@ public class SoccerMain extends AppCompatActivity implements NavigationView.OnNa
         Toolbar tBar = (Toolbar)findViewById(R.id.TB);
         setSupportActionBar(tBar);
 
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,
+                drawer, tBar,R.string.open, R.string.close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+
+        navigationView.setNavigationItemSelectedListener(this);
+
 
         adp = new SoccerAdapter(this,R.layout.game_score,matchList);
         adp.setListData(matchList);
@@ -80,6 +98,7 @@ public class SoccerMain extends AppCompatActivity implements NavigationView.OnNa
             dataToPass.putString(ITEM_TEAM2, String.valueOf(matchList.get(position).getTeam2()));
             dataToPass.putString(ITEM_DATE, String.valueOf(matchList.get(position).getDate()));
             dataToPass.putString(ITEM_URL, String.valueOf(matchList.get(position).getUrl()));
+            dataToPass.putBoolean(ITEM_IS_FAVORITE,matchList.get(position).isFavorite());
 
             if(isTablet)
             {
@@ -118,7 +137,6 @@ public class SoccerMain extends AppCompatActivity implements NavigationView.OnNa
                 startActivity(goToLyric);
                 break;
             case R.id.geodatasourceitem:
-
                 Intent goToGeo = new Intent(this, MainActivity.class);
                 startActivity(goToGeo);
                 break;
@@ -126,10 +144,10 @@ public class SoccerMain extends AppCompatActivity implements NavigationView.OnNa
                 Intent goToDeezer = new Intent(this, MainActivity.class);
                 startActivity(goToDeezer);
                 break;
-//            case R.id.help_item:
-//                String message= getResources().getString(R.string.songlyrichelpitem);
-//                Toast.makeText(this, message, Toast.LENGTH_LONG).show();
-//                break;
+            case R.id.help_item:
+                String message= getResources().getString(R.string.soccerHelp);
+                Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+                break;
         }
 
         return true;
@@ -137,6 +155,56 @@ public class SoccerMain extends AppCompatActivity implements NavigationView.OnNa
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        AlertDialog.Builder alterDialogueBuilder;
+        String message = "you have selected the navigation menu";
+
+        switch(menuItem.getItemId())
+        {
+            case R.id.instructions:
+                alterDialogueBuilder = new AlertDialog.Builder(this);
+                alterDialogueBuilder.setMessage("Find any soccer match that may catch your interest!!\n\nYou can select your favorite matches, look at them later, and if there is a game that cannot be found through our app, you can try to google it!")
+                        .setPositiveButton("Okay", (Click, arg) -> {
+                            Intent goBack = new Intent(this, SoccerMain.class);
+                            startActivity(goBack);
+                        }).create().show();
+                break;
+
+                case R.id.abouttheapi:
+                String url = "https://lyricovh.docs.apiary.io/#";
+                Intent goToApi = new Intent(Intent.ACTION_VIEW);
+                goToApi.setData(Uri.parse(url));
+                startActivity(goToApi);
+                break;
+
+                case R.id.donate:
+                    final EditText input = new EditText(this);
+                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.MATCH_PARENT);
+                alterDialogueBuilder = new AlertDialog.Builder(this);
+                input.setLayoutParams(lp);
+                alterDialogueBuilder.setView(input);
+                alterDialogueBuilder.setTitle("Please give generously");
+                alterDialogueBuilder.setMessage("How much money do you want to donate?")
+                        .setPositiveButton("Thank you", (Click, arg) -> {
+                            Intent goBack = new Intent(this, MainActivity.class);
+                            startActivity(goBack);
+                        }).setNegativeButton("Cancel", (click, arg) -> {
+                }).create().show();
+
+                break;
+            case R.id.favourites:
+                Intent SeeFavorites = new Intent(SoccerMain.this, FavoriteList.class);
+                startActivity(SeeFavorites);
+                message = "You clicked on favorites";
+                break;
+        }
+
+        DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
+        drawerLayout.closeDrawer(GravityCompat.START);
+
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+
         return false;
     }
 
@@ -185,7 +253,7 @@ public class SoccerMain extends AppCompatActivity implements NavigationView.OnNa
                     team1 = s1.getString("name");
                     team2 = s2.getString("name");
 
-                   soccerScoreObject matchTitles = new soccerScoreObject(title,date,game_url,team1,team2);
+                   soccerScoreObject matchTitles = new soccerScoreObject(title,date,game_url,team1,team2,false);
 
                    matchList.add(matchTitles);
                 }
@@ -219,32 +287,31 @@ public class SoccerMain extends AppCompatActivity implements NavigationView.OnNa
         }
     }
 
-//    private void loadDataFromDatabase() {
-//        SoccerOpener dbOpener = new SoccerOpener(this);
-//        db = dbOpener.getWritableDatabase();
-//
-//        String [] columns = {dbOpener.COL_ID, dbOpener.COL_TITLE, dbOpener.COL_DATE, dbOpener.COL_URL};
-//
-//        Cursor results = db.query(false, dbOpener.TABLE_NAME, columns, null, null, null, null, null, null);
-//
-//        int dateColIndex = results.getColumnIndex(dbOpener.COL_DATE);
-//        int titleColIndex = results.getColumnIndex(dbOpener.COL_TITLE);
-//        int urlColIndex = results.getColumnIndex(dbOpener.COL_URL);
-//        int idColIndex = results.getColumnIndex(dbOpener.COL_ID);
-//
-//        while(results.moveToNext())
-//        {
-//            String match = results.getString(titleColIndex);
-//            long id = results.getLong(idColIndex);
-//            String date = results.getString(dateColIndex);
-//            String thisUrl = results.getString(urlColIndex);
-//
-////            matchList.add(new soccerScoreObject(id,match,date,thisUrl));
-//
-//
-//        }
-//
-//
-//
-//    }
+
+    private void loadDataFromDatabase() {
+        SoccerOpener dbOpener = new SoccerOpener(this);
+        db = dbOpener.getWritableDatabase();
+
+        String [] columns = {dbOpener.COL_ID, dbOpener.COL_TITLE, dbOpener.COL_DATE, dbOpener.COL_URL};
+
+        Cursor results = db.query(false, dbOpener.TABLE_NAME, columns, null, null, null, null, null, null);
+
+        int dateColIndex = results.getColumnIndex(dbOpener.COL_DATE);
+        int titleColIndex = results.getColumnIndex(dbOpener.COL_TITLE);
+        int urlColIndex = results.getColumnIndex(dbOpener.COL_URL);
+        int idColIndex = results.getColumnIndex(dbOpener.COL_ID);
+
+        while(results.moveToNext())
+        {
+            String match = results.getString(titleColIndex);
+            long id = results.getLong(idColIndex);
+            String date = results.getString(dateColIndex);
+            String thisUrl = results.getString(urlColIndex);
+
+            matchList.add(new soccerScoreObject(id,match,date,thisUrl));
+
+
+        }
+    }
+
 }

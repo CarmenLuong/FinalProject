@@ -20,4 +20,7 @@
     <string name="geo_app">GEO</string>
     <string name="deezer_app">Deezer</string>
     <string name="songs_lyrics">Chanson et paroles</string>
+    <string name="soccerHelp">Voici l\'activité principale de football, écrite par: Joshua Mpaka</string>
+    <string name="open" />
+    <string name="close" />
 </resources>

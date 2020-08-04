@@ -16,6 +16,7 @@ public class SoccerAdapter extends BaseAdapter {
     private Context context;
     private int layoutRes;
     TextView score;
+    boolean isFavourite;
 
     SoccerAdapter(Context context,int layoutRes, ArrayList<soccerScoreObject> matchList){
         this.context = context;
@@ -54,6 +55,11 @@ public class SoccerAdapter extends BaseAdapter {
 
             view = inflater.inflate(R.layout.game_score, parent, false);
 
+            while (matchScore.isFavorite()){
+                view = inflater.inflate(R.layout.favorites_score,parent,false);
+                TextView displayedScore = view.findViewById(R.id.favorites_games);
+                displayedScore.setText(matchScore.getGameTitle());
+            }
 
         }
         TextView displayedScore = view.findViewById(R.id.games);

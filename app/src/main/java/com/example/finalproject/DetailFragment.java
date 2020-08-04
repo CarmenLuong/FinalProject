@@ -3,6 +3,7 @@ package com.example.finalproject;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,15 +14,20 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.ArrayList;
+
 public class DetailFragment extends Fragment {
 
+    ArrayList<soccerScoreObject> favoritesList = new ArrayList<>();
     private AppCompatActivity parentActivity;
     private Bundle dataFromActivity;
-
+    SQLiteDatabase db;
+    SoccerAdapter myAdapter;
 
 
 
@@ -32,7 +38,11 @@ public class DetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        myAdapter = new SoccerAdapter(getContext(),R.layout.activity_favorite_list,favoritesList);
         // Inflate the layout for this fragment
+        SoccerOpener dbSoccer = new SoccerOpener(getContext());
+        db = dbSoccer.getWritableDatabase();
         dataFromActivity = getArguments();
         View result =  inflater.inflate(R.layout.fragment_detail, container, false);
 
@@ -50,17 +60,24 @@ public class DetailFragment extends Fragment {
 
         Button addToFav = (Button)result.findViewById(R.id.favourite);
         addToFav.setOnClickListener(Click -> {
-            SoccerOpener soccerDb = new SoccerOpener(getContext());
-            SQLiteDatabase db = soccerDb.getWritableDatabase();
+            String game = dataFromActivity.getString(SoccerMain.ITEM_SELECTED);
+            String date = dataFromActivity.getString(SoccerMain.ITEM_DATE);
+            String url = dataFromActivity.getString(SoccerMain.ITEM_URL);
+
+
+
             ContentValues newRowValues = new ContentValues();
-            newRowValues.put(SoccerOpener.COL_TITLE, dataFromActivity.getString(SoccerMain.ITEM_SELECTED));
-            newRowValues.put(SoccerOpener.COL_DATE, dataFromActivity.getString(SoccerMain.ITEM_DATE));
-            newRowValues.put(SoccerOpener.COL_URL,dataFromActivity.getString(SoccerMain.ITEM_URL));
+            newRowValues.put(SoccerOpener.COL_TITLE, game);
+            newRowValues.put(SoccerOpener.COL_DATE, date);
+            newRowValues.put(SoccerOpener.COL_URL,url);
             long newId = db.insert(SoccerOpener.TABLE_NAME,null, newRowValues);
             Snackbar.make(addToFav,"\"" + dataFromActivity.getString(SoccerMain.ITEM_SELECTED) + " was added to favorites!",Snackbar.LENGTH_LONG).show();
+
+            soccerScoreObject newGame = new soccerScoreObject(newId,game,date,url,true);
+            favoritesList.add(newGame);
+            myAdapter.setListData(favoritesList);
+
         });
-
-
 
         Button watchHighlights = (Button)result.findViewById(R.id.watchHighlights);
         watchHighlights.setOnClickListener( click -> {
@@ -71,6 +88,7 @@ public class DetailFragment extends Fragment {
         return result;
     }
 
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -78,4 +96,7 @@ public class DetailFragment extends Fragment {
         //context will either be FragmentExample for a tablet, or EmptyActivity for phone
         parentActivity = (AppCompatActivity)context;
     }
+
+
+
 }

@@ -19,4 +19,7 @@
     <string name="geo_app">GEO</string>
     <string name="deezer_app">Deezer</string>
     <string name="songs_lyrics">Songs and Lyrics</string>
+    <string name="soccerHelp">This is the Main soccer activity, written by : Joshua Mpaka</string>
+    <string name="open" />
+    <string name="close" />
 </resources>
