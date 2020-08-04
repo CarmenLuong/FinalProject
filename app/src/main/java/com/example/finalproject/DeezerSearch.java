@@ -29,7 +29,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
 
-public class SongSearch extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class DeezerSearch extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     Button loginButton;
     EditText email;
@@ -42,9 +42,9 @@ public class SongSearch extends AppCompatActivity implements NavigationView.OnNa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.song_search);
+        setContentView(R.layout.activity_deezer_search);
 
-        email = findViewById(R.id.LyricEmail);
+        email = findViewById(R.id.DeezerEmail);
         loginButton = findViewById(R.id.loginButton);
         questionButton = findViewById(R.id.questionButton);
         Toolbar tBar = (Toolbar)findViewById(R.id.TB);
@@ -56,7 +56,7 @@ public class SongSearch extends AppCompatActivity implements NavigationView.OnNa
         String savedString = myPrefs.getString("email", "");
         email.setText(savedString);
         questionButton.setOnClickListener(v ->
-                Toast.makeText(SongSearch.this, getResources().getString(R.string.lyricemailtoast), Toast.LENGTH_LONG).show());
+                Toast.makeText(DeezerSearch.this, getResources().getString(R.string.deezeremailtoast), Toast.LENGTH_LONG).show());
 
         loginButton.setOnClickListener(v ->
         {
@@ -74,7 +74,7 @@ public class SongSearch extends AppCompatActivity implements NavigationView.OnNa
                 }
 
             } else {
-                Intent goToProfile = new Intent(SongSearch.this, SearchClass.class);
+                Intent goToProfile = new Intent(DeezerSearch.this, DeezerActivity.class);
 
                 goToProfile.putExtra("email", savedString);
                 startActivity(goToProfile);
@@ -96,7 +96,7 @@ public class SongSearch extends AppCompatActivity implements NavigationView.OnNa
     public boolean onCreateOptionsMenu(Menu menu) {
 
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_items, menu);
+        inflater.inflate(R.menu.menu_items_deezer, menu);
         return true;
     }
 
@@ -108,20 +108,20 @@ public class SongSearch extends AppCompatActivity implements NavigationView.OnNa
         {
 
             case R.id.soccermatchitem:
-                Intent goToSoccer = new Intent(SongSearch.this, MainActivity.class);
+                Intent goToSoccer = new Intent(DeezerSearch.this, MainActivity.class);
                 startActivity(goToSoccer);
                 break;
             case R.id.geodatasourceitem:
 
-                Intent goToGeo = new Intent(SongSearch.this, MainActivity.class);
+                Intent goToGeo = new Intent(DeezerSearch.this, MainActivity.class);
                 startActivity(goToGeo);
                 break;
-            case R.id.deezersongsearchitem:
-                Intent goToDeezer = new Intent(SongSearch.this, DeezerSearch.class);
-                startActivity(goToDeezer);
+            case R.id.lyricsongsearchitem:
+                Intent goToSongSearch = new Intent(DeezerSearch.this, SongListClass.class);
+                startActivity(goToSongSearch);
                 break;
             case R.id.help_item:
-                String message= getResources().getString(R.string.songlyrichelpitem);
+                String message= getResources().getString(R.string.deezerhelpitem);
                 Toast.makeText(this, message, Toast.LENGTH_LONG).show();
                 break;
         }
@@ -132,13 +132,13 @@ public class SongSearch extends AppCompatActivity implements NavigationView.OnNa
 
 
 
-            protected void onPause(){
-                super.onPause();
-                stringToSave = email.getText().toString();
-                SharedPreferences.Editor ed = myPrefs.edit();
-                ed.putString("email", stringToSave);
-                ed.commit();
-            }
+    protected void onPause(){
+        super.onPause();
+        stringToSave = email.getText().toString();
+        SharedPreferences.Editor ed = myPrefs.edit();
+        ed.putString("email", stringToSave);
+        ed.commit();
+    }
 
 
     @Override
@@ -149,15 +149,15 @@ public class SongSearch extends AppCompatActivity implements NavigationView.OnNa
         switch(item.getItemId())
         {
             case R.id.instructions:
-                alterDialogueBilder = new AlertDialog.Builder(SongSearch.this);
-                alterDialogueBilder.setMessage("Simply type in your desired song and the artist or group's name that you're looking for, then hit search!\n\nYou can select your favorites, look at them later, and if theres anything that you cant find seem to find through us, you can google it!")
+                alterDialogueBilder = new AlertDialog.Builder(DeezerSearch.this);
+                alterDialogueBilder.setMessage("Use this search to find and play your favourite songs.\n\nYou can always save your favorites for later listening!")
                         .setPositiveButton("Okay", (Click, arg) -> {
-                            Intent goBack = new Intent(SongSearch.this, SongSearch.class);
+                            Intent goBack = new Intent(DeezerSearch.this, DeezerSearch.class);
                             startActivity(goBack);
                         }).create().show();
                 break;
             case R.id.abouttheapi:
-                String url = "https://lyricovh.docs.apiary.io/#";
+                String url = "https://rapidapi.com/deezerdevs/api/deezer-1";
 
                 Intent goToapi = new Intent(Intent.ACTION_VIEW);
                 goToapi.setData(Uri.parse(url));
@@ -169,16 +169,16 @@ public class SongSearch extends AppCompatActivity implements NavigationView.OnNa
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.MATCH_PARENT);
-                alterDialogueBilder = new AlertDialog.Builder(SongSearch.this);
+                alterDialogueBilder = new AlertDialog.Builder(DeezerSearch.this);
                 input.setLayoutParams(lp);
                 alterDialogueBilder.setView(input);
                 alterDialogueBilder.setTitle("Please give generously");
                 alterDialogueBilder.setMessage("How much money do you want to donate?")
                         .setPositiveButton("Thank you", (Click, arg) -> {
-                            Intent goBack = new Intent(SongSearch.this, SongSearch.class);
+                            Intent goBack = new Intent(DeezerSearch.this, DeezerSearch.class);
                             startActivity(goBack);
                         }).setNegativeButton("Cancel", (click, arg) -> {
-        }).create().show();
+                }).create().show();
 
                 break;
         }

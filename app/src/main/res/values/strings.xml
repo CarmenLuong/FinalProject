@@ -4,7 +4,7 @@
     <string name="JoshMpaka">By: Joshua Mpaka</string>
     <string name="songLyricsSearch">Song Lyrics Search</string>
     <string name="DevynnL">By: Devynn Lyle</string>
-    <string name="Deezer">Dezzer Song search api</string>
+    <string name="Deezer">Deezer Song search api</string>
     <string name="DylanWilc">By: Dylan Wilcox</string>
     <string name="GeoDataSource">Geo data source</string>
     <string name="CarmenL">By: Carmen Luong</string>
@@ -33,4 +33,18 @@
     <string name="open" />
     <string name="close" />
     <string name="menuItem">Options</string>
+    <string name="lyricIconTitle">Lyrics Song Search</string>
+    <string name="deezerContinueButt">Continue to Deezer song search</string>
+    <string name="deezeremailtoast">We won\'t send you emails! This is for research purposes only.</string>
+    <string name="deezerhelpitem">This is the Deezer song search activity, written by : Dylan Wilcox</string>
+    <string name="DeezerSearchTitle">Deezer Song Search</string>
+    <string name="searchSongs">Search and Listen to music you want!</string>
+    <string name="enterSongHere">Enter your artist here!</string>
+    <string name="searchButton">Search for Artist</string>
+    <string name="favouriteButton">Go to Favourites</string>
+    <string name="errorSearching">Unable to search, please enter an artist</string>
+    <string name="artistTitleTextField">Artist Name:</string>
+    <string name="durationTextField">Song Duration:</string>
+    <string name="albumNameTextField">Album Name:</string>
+    <string name="albumCoverImageView">Cover Art:</string>
 </resources>

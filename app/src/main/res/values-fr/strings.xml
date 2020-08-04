@@ -33,4 +33,5 @@
     <string name="slhelpitem">Élément de recherche de paroles de chanson</string>
     <string name="open" />
     <string name="close" />
+    <string name="menuItem">Options</string>
 </resources>
