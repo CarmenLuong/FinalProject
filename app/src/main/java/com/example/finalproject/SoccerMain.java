@@ -287,31 +287,4 @@ public class SoccerMain extends AppCompatActivity implements NavigationView.OnNa
         }
     }
 
-
-    private void loadDataFromDatabase() {
-        SoccerOpener dbOpener = new SoccerOpener(this);
-        db = dbOpener.getWritableDatabase();
-
-        String [] columns = {dbOpener.COL_ID, dbOpener.COL_TITLE, dbOpener.COL_DATE, dbOpener.COL_URL};
-
-        Cursor results = db.query(false, dbOpener.TABLE_NAME, columns, null, null, null, null, null, null);
-
-        int dateColIndex = results.getColumnIndex(dbOpener.COL_DATE);
-        int titleColIndex = results.getColumnIndex(dbOpener.COL_TITLE);
-        int urlColIndex = results.getColumnIndex(dbOpener.COL_URL);
-        int idColIndex = results.getColumnIndex(dbOpener.COL_ID);
-
-        while(results.moveToNext())
-        {
-            String match = results.getString(titleColIndex);
-            long id = results.getLong(idColIndex);
-            String date = results.getString(dateColIndex);
-            String thisUrl = results.getString(urlColIndex);
-
-            matchList.add(new soccerScoreObject(id,match,date,thisUrl));
-
-
-        }
-    }
-
 }
