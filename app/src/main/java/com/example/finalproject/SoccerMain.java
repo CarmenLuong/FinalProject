@@ -1,6 +1,9 @@
 package com.example.finalproject;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 
 import android.content.ContentValues;
 import android.content.Intent;
@@ -9,9 +12,15 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.material.navigation.NavigationView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,7 +33,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class SoccerMain extends AppCompatActivity {
+public class SoccerMain extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     ArrayList<soccerScoreObject> matchList = new ArrayList<>();
     SQLiteDatabase db;
     SoccerAdapter adp;
@@ -52,6 +61,10 @@ public class SoccerMain extends AppCompatActivity {
         myList = findViewById(R.id.FinalProjectList);
 
         isTablet = findViewById(R.id.frame1) != null;
+
+        Toolbar tBar = (Toolbar)findViewById(R.id.TB);
+        setSupportActionBar(tBar);
+
 
         adp = new SoccerAdapter(this,R.layout.game_score,matchList);
         adp.setListData(matchList);
@@ -85,9 +98,46 @@ public class SoccerMain extends AppCompatActivity {
             }
         });
 
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.item_menu, menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
 
+        switch(item.getItemId())
+        {
+
+            case R.id.songlyrichelpitem:
+                Intent goToLyric = new Intent(this, MainActivity.class);
+                startActivity(goToLyric);
+                break;
+            case R.id.geodatasourceitem:
+
+                Intent goToGeo = new Intent(this, MainActivity.class);
+                startActivity(goToGeo);
+                break;
+            case R.id.deezersongsearchitem:
+                Intent goToDeezer = new Intent(this, MainActivity.class);
+                startActivity(goToDeezer);
+                break;
+//            case R.id.help_item:
+//                String message= getResources().getString(R.string.songlyrichelpitem);
+//                Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+//                break;
+        }
+
+        return true;
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        return false;
     }
 
 
