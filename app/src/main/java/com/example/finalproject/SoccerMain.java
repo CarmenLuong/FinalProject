@@ -56,16 +56,7 @@ public class SoccerMain extends AppCompatActivity {
         adp = new SoccerAdapter(this,R.layout.game_score,matchList);
         adp.setListData(matchList);
         myList.setAdapter(adp);
-        loadDataFromDatabase();
-
-        soccerScoreObject temp = new soccerScoreObject();
-
-        ContentValues newRowValues = new ContentValues();
-        newRowValues.put(SoccerOpener.COL_TITLE,temp.getGameTitle());
-        newRowValues.put(SoccerOpener.COL_DATE, temp.getDate());
-        newRowValues.put(SoccerOpener.COL_URL,temp.getUrl());
-        long newId = db.insert(SoccerOpener.TABLE_NAME,null, newRowValues);
-        soccerScoreObject scoreEntry = new soccerScoreObject(String.valueOf(newId),temp.getGameTitle());
+//        loadDataFromDatabase();
 
 
         myList.setOnItemClickListener((list, view, position, id) -> {
@@ -178,32 +169,32 @@ public class SoccerMain extends AppCompatActivity {
         }
     }
 
-    private void loadDataFromDatabase() {
-        SoccerOpener dbOpener = new SoccerOpener(this);
-        db = dbOpener.getWritableDatabase();
-
-        String [] columns = {dbOpener.COL_ID, dbOpener.COL_TITLE, dbOpener.COL_DATE, dbOpener.COL_URL};
-
-        Cursor results = db.query(false, dbOpener.TABLE_NAME, columns, null, null, null, null, null, null);
-
-        int dateColIndex = results.getColumnIndex(dbOpener.COL_DATE);
-        int titleColIndex = results.getColumnIndex(dbOpener.COL_TITLE);
-        int urlColIndex = results.getColumnIndex(dbOpener.COL_URL);
-        int idColIndex = results.getColumnIndex(dbOpener.COL_ID);
-
-        while(results.moveToNext())
-        {
-            String match = results.getString(titleColIndex);
-            long id = results.getLong(idColIndex);
-            String date = results.getString(dateColIndex);
-            String thisUrl = results.getString(urlColIndex);
-
-//            matchList.add(new soccerScoreObject(id,match,date,thisUrl));
-
-
-        }
-
-
-
-    }
+//    private void loadDataFromDatabase() {
+//        SoccerOpener dbOpener = new SoccerOpener(this);
+//        db = dbOpener.getWritableDatabase();
+//
+//        String [] columns = {dbOpener.COL_ID, dbOpener.COL_TITLE, dbOpener.COL_DATE, dbOpener.COL_URL};
+//
+//        Cursor results = db.query(false, dbOpener.TABLE_NAME, columns, null, null, null, null, null, null);
+//
+//        int dateColIndex = results.getColumnIndex(dbOpener.COL_DATE);
+//        int titleColIndex = results.getColumnIndex(dbOpener.COL_TITLE);
+//        int urlColIndex = results.getColumnIndex(dbOpener.COL_URL);
+//        int idColIndex = results.getColumnIndex(dbOpener.COL_ID);
+//
+//        while(results.moveToNext())
+//        {
+//            String match = results.getString(titleColIndex);
+//            long id = results.getLong(idColIndex);
+//            String date = results.getString(dateColIndex);
+//            String thisUrl = results.getString(urlColIndex);
+//
+////            matchList.add(new soccerScoreObject(id,match,date,thisUrl));
+//
+//
+//        }
+//
+//
+//
+//    }
 }

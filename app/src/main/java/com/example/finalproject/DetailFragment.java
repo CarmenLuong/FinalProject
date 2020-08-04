@@ -1,7 +1,9 @@
 package com.example.finalproject;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -13,12 +15,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-
+import com.google.android.material.snackbar.Snackbar;
 
 public class DetailFragment extends Fragment {
 
     private AppCompatActivity parentActivity;
     private Bundle dataFromActivity;
+
+
 
 
     public DetailFragment() {
@@ -45,6 +49,16 @@ public class DetailFragment extends Fragment {
         team2.setText(dataFromActivity.getString(SoccerMain.ITEM_TEAM2));
 
         Button addToFav = (Button)result.findViewById(R.id.favourite);
+        addToFav.setOnClickListener(Click -> {
+            SoccerOpener soccerDb = new SoccerOpener(getContext());
+            SQLiteDatabase db = soccerDb.getWritableDatabase();
+            ContentValues newRowValues = new ContentValues();
+            newRowValues.put(SoccerOpener.COL_TITLE, dataFromActivity.getString(SoccerMain.ITEM_SELECTED));
+            newRowValues.put(SoccerOpener.COL_DATE, dataFromActivity.getString(SoccerMain.ITEM_DATE));
+            newRowValues.put(SoccerOpener.COL_URL,dataFromActivity.getString(SoccerMain.ITEM_URL));
+            long newId = db.insert(SoccerOpener.TABLE_NAME,null, newRowValues);
+            Snackbar.make(addToFav,"\"" + dataFromActivity.getString(SoccerMain.ITEM_SELECTED) + " was added to favorites!",Snackbar.LENGTH_LONG).show();
+        });
 
 
 
