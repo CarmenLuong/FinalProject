@@ -16,5 +16,7 @@
     <string name="url">Regarder les temps forts du match</string>
     <string name="add_to_fav">Ajouter aux Favoris</string>
     <string name="favouritesGames">Favoris</string>
-
+    <string name="aboutThisProject">à propos de ce projet</string>
+    <string name="geo_app">GEO</string>
+    <string name="deezer_app">Deezer</string>
 </resources>

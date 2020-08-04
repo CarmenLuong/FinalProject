@@ -15,5 +15,7 @@
     <string name="url">Watch Match highlights</string>
     <string name="add_to_fav">Add to Favorites</string>
     <string name="favouritesGames">Favorites</string>
-
+    <string name="aboutThisProject">About this Project</string>
+    <string name="geo_app">GEO</string>
+    <string name="deezer_app">Deezer</string>
 </resources>
