@@ -26,6 +26,4 @@
         android:title="@string/aboutThisProject"
         app:showAsAction="never"
         android:orderInCategory="0"/>
-
-
 </menu>

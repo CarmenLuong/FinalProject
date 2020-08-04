@@ -19,4 +19,5 @@
     <string name="aboutThisProject">à propos de ce projet</string>
     <string name="geo_app">GEO</string>
     <string name="deezer_app">Deezer</string>
+    <string name="songs_lyrics">Chanson et paroles</string>
 </resources>
