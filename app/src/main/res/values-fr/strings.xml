@@ -15,4 +15,6 @@
     <string name="team2">equipe 2</string>
     <string name="url">Regarder les temps forts du match</string>
     <string name="add_to_fav">Ajouter aux Favoris</string>
+    <string name="favouritesGames">Favoris</string>
+
 </resources>

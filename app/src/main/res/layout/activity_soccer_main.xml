@@ -7,11 +7,38 @@
     android:layout_height="match_parent"
     tools:context=".SoccerMain">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/TB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"/>
+
+
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:openDrawer="start"
+        >
+
+
     <ListView
         android:id="@+id/FinalProjectList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         tools:ignore="MissingConstraints" />
+
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:fitsSystemWindows="true"
+            app:menu="@menu/soccer_menu" />
+
+
+    </androidx.drawerlayout.widget.DrawerLayout>
 
 </RelativeLayout>
