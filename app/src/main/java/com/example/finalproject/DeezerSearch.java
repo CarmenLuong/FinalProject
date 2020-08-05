@@ -108,7 +108,7 @@ public class DeezerSearch extends AppCompatActivity implements NavigationView.On
         {
 
             case R.id.soccermatchitem:
-                Intent goToSoccer = new Intent(DeezerSearch.this, MainActivity.class);
+                Intent goToSoccer = new Intent(DeezerSearch.this, SoccerMain.class);
                 startActivity(goToSoccer);
                 break;
             case R.id.geodatasourceitem:
@@ -157,7 +157,7 @@ public class DeezerSearch extends AppCompatActivity implements NavigationView.On
                         }).create().show();
                 break;
             case R.id.abouttheapi:
-                String url = "https://rapidapi.com/deezerdevs/api/deezer-1";
+                String url = "https://developers.deezer.com/guidelines";
 
                 Intent goToapi = new Intent(Intent.ACTION_VIEW);
                 goToapi.setData(Uri.parse(url));

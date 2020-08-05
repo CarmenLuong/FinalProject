@@ -195,12 +195,12 @@ public class DeezerActivity extends AppCompatActivity implements NavigationView.
         {
 
             case R.id.soccermatchitem:
-                Intent goToSoccer = new Intent(DeezerActivity.this, MainActivity.class);
+                Intent goToSoccer = new Intent(DeezerActivity.this, SoccerMain.class);
                 startActivity(goToSoccer);
                 break;
             case R.id.geodatasourceitem:
 
-                Intent goToGeo = new Intent(DeezerActivity.this, MainActivity.class);
+                Intent goToGeo = new Intent(DeezerActivity.this, GeoDataActivity.class);
                 startActivity(goToGeo);
                 break;
             case R.id.lyricsongsearchitem:
@@ -363,7 +363,7 @@ public class DeezerActivity extends AppCompatActivity implements NavigationView.
                         }).create().show();
                 break;
             case R.id.abouttheapi:
-                String url = "https://rapidapi.com/deezerdevs/api/deezer-1";
+                String url = "https://developers.deezer.com/guidelines";
 
                 Intent goToapi = new Intent(Intent.ACTION_VIEW);
                 goToapi.setData(Uri.parse(url));

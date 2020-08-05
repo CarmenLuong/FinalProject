@@ -147,15 +147,15 @@ public class SoccerMain extends AppCompatActivity implements NavigationView.OnNa
         {
 
             case R.id.songlyrichelpitem:
-                Intent goToLyric = new Intent(this, MainActivity.class);
+                Intent goToLyric = new Intent(this, SoccerMain.class);
                 startActivity(goToLyric);
                 break;
             case R.id.geodatasourceitem:
-                Intent goToGeo = new Intent(this, MainActivity.class);
+                Intent goToGeo = new Intent(this, GeoDataActivity.class);
                 startActivity(goToGeo);
                 break;
             case R.id.deezersongsearchitem:
-                Intent goToDeezer = new Intent(this, MainActivity.class);
+                Intent goToDeezer = new Intent(this, DeezerSearch.class);
                 startActivity(goToDeezer);
                 break;
             case R.id.help_item:
