@@ -43,26 +43,26 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class SoccerMain extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
-    private ArrayList<soccerScoreObject> matchList = new ArrayList<>();
-    private SQLiteDatabase db;
-    private SoccerAdapter adp;
-    private ListView myList;
-    private TextView scores;
-    private String team1, team2;
-    private String title;
-    private String date;
-    private String game_url;
-    private Button favButton;
-    private ProgressBar mProgressBar;
+    ArrayList<soccerScoreObject> matchList = new ArrayList<>();
+     SQLiteDatabase db;
+     SoccerAdapter adp;
+     ListView myList;
+     TextView scores;
+     String team1, team2;
+     String title;
+     String date;
+     String game_url;
+     Button favButton;
+     ProgressBar mProgressBar;
 
-    private static final String ITEM_ID = "id";
-    private static final String ITEM_SELECTED = "GAME";
-    private static final String ITEM_TEAM1 = "team1";
-    private static final String ITEM_TEAM2 = "team2";
-    private static final String ITEM_DATE = "date";
-    private static final String ITEM_URL = "match";
-    private static final String ITEM_IS_FAVORITE = "favorites";
-    private boolean isTablet;
+     public static final String ITEM_ID = "id";
+     public static final String ITEM_SELECTED = "GAME";
+     public static final String ITEM_TEAM1 = "team1";
+     public static final String ITEM_TEAM2 = "team2";
+     public static final String ITEM_DATE = "date";
+     public static final String ITEM_URL = "match";
+     public static final String ITEM_IS_FAVORITE = "favorites";
+     boolean isTablet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +91,7 @@ public class SoccerMain extends AppCompatActivity implements NavigationView.OnNa
 
         mProgressBar = findViewById(R.id.mainProgress);
         mProgressBar.setVisibility(View.VISIBLE);
+        mProgressBar.setProgress(100);
         adp = new SoccerAdapter(this,R.layout.game_score,matchList);
         adp.setListData(matchList);
         myList.setAdapter(adp);

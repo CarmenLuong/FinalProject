@@ -28,6 +28,7 @@ public class DetailFragment extends Fragment {
     private Bundle dataFromActivity;
     SQLiteDatabase db;
     SoccerAdapter myAdapter;
+    public static final String URL = "match";
 
 
 
@@ -45,6 +46,9 @@ public class DetailFragment extends Fragment {
         db = dbSoccer.getWritableDatabase();
         dataFromActivity = getArguments();
         View result =  inflater.inflate(R.layout.fragment_detail, container, false);
+        String game = dataFromActivity.getString(SoccerMain.ITEM_SELECTED);
+        String date = dataFromActivity.getString(SoccerMain.ITEM_DATE);
+        String url = dataFromActivity.getString(SoccerMain.ITEM_URL);
 
         TextView gameTitle = (TextView)result.findViewById(R.id.gameHeader);
         gameTitle.setText(dataFromActivity.getString(SoccerMain.ITEM_SELECTED));
@@ -63,11 +67,6 @@ public class DetailFragment extends Fragment {
 
 
         addToFav.setOnClickListener(Click -> {
-            String game = dataFromActivity.getString(SoccerMain.ITEM_SELECTED);
-            String date = dataFromActivity.getString(SoccerMain.ITEM_DATE);
-            String url = dataFromActivity.getString(SoccerMain.ITEM_URL);
-
-
 
             ContentValues newRowValues = new ContentValues();
             newRowValues.put(SoccerOpener.COL_TITLE, game);
@@ -84,8 +83,16 @@ public class DetailFragment extends Fragment {
 
         Button watchHighlights = (Button)result.findViewById(R.id.watchHighlights);
         watchHighlights.setOnClickListener( click -> {
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(dataFromActivity.getString(SoccerMain.ITEM_URL)));
-            startActivity(browserIntent);
+            Bundle urlToPass = new Bundle();
+            urlToPass.putString(URL,url);
+
+
+                Intent intent = new Intent(getActivity(),WebViewActivity.class);
+                intent.putExtras(urlToPass);
+                startActivity(intent);
+
+//            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(dataFromActivity.getString(SoccerMain.ITEM_URL)));
+//            startActivity(browserIntent);
         });
 
         return result;
