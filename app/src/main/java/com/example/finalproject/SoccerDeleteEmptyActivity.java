@@ -6,7 +6,11 @@ import android.os.Bundle;
 
 public class SoccerDeleteEmptyActivity extends AppCompatActivity {
 
-    // for phone layout
+    /**
+     * this loads the data from the previous activity and into this empty activity, in order to visualize
+     * a match from the favourites list
+     * @param savedInstanceState
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -6,6 +6,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+/**
+ *
+ * this class allows to create a database to save the matches to that have been selected as
+ * favourite
+ */
+
 public class SoccerOpener extends SQLiteOpenHelper {
     protected final static String DATABASE_NAME = "ScoreDb";
     protected final static int VERSION_NUM = 8;
