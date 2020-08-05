@@ -7,6 +7,13 @@
     tools:context=".CityDetailFragment">
 
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/city_data_title"
+        android:textSize="25sp"
+        android:gravity="center"/>
+
+    <TextView
         android:id="@+id/CountryText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
@@ -39,11 +46,11 @@
     <Button
         android:id="@+id/FavouriteButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"/>
 
     <Button
         android:id="@+id/GoogleMapButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/google_map"/>
 

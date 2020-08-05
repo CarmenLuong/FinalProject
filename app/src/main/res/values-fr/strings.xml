@@ -53,5 +53,7 @@
     <string name="latitude_text_variable">Latitude: %1$s</string>
     <string name="longitude_text_variable">Longitude: %1$s</string>
     <string name="found_cities">Trouvé %1$d villes à proximité.</string>
+    <string name="geo_data_title">Rechercher des villes à proximité</string>
+    <string name="city_data_title">Informations sur la ville</string>
 
 </resources>
