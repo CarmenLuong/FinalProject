@@ -27,8 +27,8 @@
         <activity android:name=".SongLyricsPage" />
         <activity android:name=".GeoDataActivity"/>
         <activity
-            android:name=".SearchClass"
-            android:windowSoftInputMode="stateHidden" />
+
+
             android:name=".SongSearchClass"
             android:windowSoftInputMode="stateHidden"
             />
