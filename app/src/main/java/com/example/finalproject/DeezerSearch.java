@@ -113,11 +113,11 @@ public class DeezerSearch extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.geodatasourceitem:
 
-                Intent goToGeo = new Intent(DeezerSearch.this, MainActivity.class);
+                Intent goToGeo = new Intent(DeezerSearch.this, GeoDataActivity.class);
                 startActivity(goToGeo);
                 break;
             case R.id.lyricsongsearchitem:
-                Intent goToSongSearch = new Intent(DeezerSearch.this, SongListClass.class);
+                Intent goToSongSearch = new Intent(DeezerSearch.this, SongSearch.class);
                 startActivity(goToSongSearch);
                 break;
             case R.id.help_item:

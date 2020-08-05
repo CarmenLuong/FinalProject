@@ -121,7 +121,7 @@ public class SongListClass extends AppCompatActivity implements NavigationView.O
                 startActivity(goToGeo);
                 break;
             case R.id.deezersongsearchitem:
-                Intent goToDeezer = new Intent(this, MainActivity.class);
+                Intent goToDeezer = new Intent(this, DeezerSearch.class);
                 startActivity(goToDeezer);
                 break;
             case R.id.help_item:

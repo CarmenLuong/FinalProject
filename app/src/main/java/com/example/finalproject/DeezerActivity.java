@@ -204,7 +204,7 @@ public class DeezerActivity extends AppCompatActivity implements NavigationView.
                 startActivity(goToGeo);
                 break;
             case R.id.lyricsongsearchitem:
-                Intent goToSongSearch = new Intent(DeezerActivity.this, SongListClass.class);
+                Intent goToSongSearch = new Intent(DeezerActivity.this, SongSearch.class);
                 startActivity(goToSongSearch);
                 break;
             case R.id.help_item:

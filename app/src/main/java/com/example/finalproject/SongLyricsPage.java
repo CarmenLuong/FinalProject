@@ -123,7 +123,7 @@ public class SongLyricsPage extends AppCompatActivity implements NavigationView.
                 startActivity(goToGeo);
                 break;
             case R.id.deezersongsearchitem:
-                Intent goToDeezer = new Intent(this, MainActivity.class);
+                Intent goToDeezer = new Intent(this, DeezerSearch.class);
                 startActivity(goToDeezer);
                 break;
             case R.id.help_item:
