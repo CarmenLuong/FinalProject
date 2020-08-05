@@ -41,6 +41,10 @@ public class DeezerSearchedArtist extends AppCompatActivity {
     String iconName;
     Intent fromDeezerActivity;
 
+    /**
+     * file existance is intended to confirm a file exists before redownloading it
+     *
+     */
     public boolean fileExistance(String fname){
         File file = getBaseContext().getFileStreamPath(fname);
         return file.exists();   }
@@ -58,6 +62,10 @@ public class DeezerSearchedArtist extends AppCompatActivity {
 
 
     }
+
+    /**
+     * secondQuery is intended to use the url and title passed from the DeezerActivity class to collect the remaining information to present the user
+     */
 
     private class SecondQuery extends AsyncTask<String, Integer, String> {
 

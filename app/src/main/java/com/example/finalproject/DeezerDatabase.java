@@ -12,6 +12,11 @@ public class DeezerDatabase extends SQLiteOpenHelper {
     public final static String COL_SEARCH_TITLE = "TITLE";
     public final static String COL_ID = "_id";
 
+
+    /**
+     * class is intended to setup and refresh the database used in storing information for favourites
+     *
+     */
     public DeezerDatabase(Context ctx)
     {
         super(ctx, DATABASE_NAME, null, VERSION_NUM);
