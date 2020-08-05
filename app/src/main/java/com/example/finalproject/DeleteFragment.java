@@ -25,6 +25,7 @@ public class DeleteFragment extends Fragment {
     private Bundle dataFromActivity;
     SQLiteDatabase db;
     SoccerAdapter myAdapter;
+    public static final String URL = "match";
 
 
     // for tablet
@@ -45,6 +46,7 @@ public class DeleteFragment extends Fragment {
         View result =  inflater.inflate(R.layout.activity_delete_fragment, container, false);
 
         Long gameId = dataFromActivity.getLong(FavoriteList.ITEM_ID);
+        String url = dataFromActivity.getString(FavoriteList.ITEM_URL);
 
         TextView gameTitle = (TextView)result.findViewById(R.id.gameHeader);
         gameTitle.setText(dataFromActivity.getString(FavoriteList.ITEM_SELECTED));
@@ -60,8 +62,13 @@ public class DeleteFragment extends Fragment {
 
         Button watchHighlights = (Button)result.findViewById(R.id.watchHighlights);
         watchHighlights.setOnClickListener( click -> {
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(dataFromActivity.getString(FavoriteList.ITEM_URL)));
-            startActivity(browserIntent);
+            Bundle urlToPass = new Bundle();
+            urlToPass.putString(URL,url);
+
+
+            Intent intent = new Intent(getActivity(),WebViewActivity.class);
+            intent.putExtras(urlToPass);
+            startActivity(intent);
         });
 
         Button deleteFromDb = (Button)result.findViewById(R.id.RemoveFavourite);
@@ -69,7 +76,7 @@ public class DeleteFragment extends Fragment {
             db.execSQL("DELETE FROM " + SoccerOpener.TABLE_NAME +  " WHERE " + SoccerOpener.COL_ID + "=?",
                     new String[] {String.valueOf(gameId)});
             Snackbar.make(deleteFromDb,"\"" + dataFromActivity.getString(FavoriteList.ITEM_SELECTED) + " was removed from favorites!",Snackbar.LENGTH_LONG).show();
-            getActivity().onBackPressed();
+
         });
 
 
