@@ -49,6 +49,8 @@ public class DetailFragment extends Fragment {
         String game = dataFromActivity.getString(SoccerMain.ITEM_SELECTED);
         String date = dataFromActivity.getString(SoccerMain.ITEM_DATE);
         String url = dataFromActivity.getString(SoccerMain.ITEM_URL);
+        String firstTeam = dataFromActivity.getString(SoccerMain.ITEM_TEAM1);
+        String secondTeam = dataFromActivity.getString(SoccerMain.ITEM_TEAM2);
 
         TextView gameTitle = (TextView)result.findViewById(R.id.gameHeader);
         gameTitle.setText(dataFromActivity.getString(SoccerMain.ITEM_SELECTED));
@@ -72,10 +74,12 @@ public class DetailFragment extends Fragment {
             newRowValues.put(SoccerOpener.COL_TITLE, game);
             newRowValues.put(SoccerOpener.COL_DATE, date);
             newRowValues.put(SoccerOpener.COL_URL,url);
+            newRowValues.put(SoccerOpener.COL_TEAM1,firstTeam);
+            newRowValues.put(SoccerOpener.COL_TEAM2,secondTeam);
             long newId = db.insert(SoccerOpener.TABLE_NAME,null, newRowValues);
             Snackbar.make(addToFav,"\"" + dataFromActivity.getString(SoccerMain.ITEM_SELECTED) + " was added to favorites!",Snackbar.LENGTH_LONG).show();
 
-            soccerScoreObject newGame = new soccerScoreObject(newId,game,date,url,true);
+            soccerScoreObject newGame = new soccerScoreObject(newId,game,date,url,firstTeam,secondTeam,true);
             favoritesList.add(newGame);
             myAdapter.setListData(favoritesList);
 

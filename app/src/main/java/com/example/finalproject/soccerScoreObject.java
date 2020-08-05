@@ -49,7 +49,9 @@ public class soccerScoreObject {
         this.isFavorite = isFavorite;
     }
 
-
+    public soccerScoreObject(long id, String match, String date, String thisUrl, String mTeam1, String mTeam2) {
+        this(id,match,date,thisUrl,mTeam1,mTeam2,false);
+    }
 
 
     public long getId(){

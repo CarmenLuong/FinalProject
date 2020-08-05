@@ -8,12 +8,14 @@ import androidx.annotation.Nullable;
 
 public class SoccerOpener extends SQLiteOpenHelper {
     protected final static String DATABASE_NAME = "ScoreDb";
-    protected final static int VERSION_NUM = 3;
+    protected final static int VERSION_NUM = 7;
     public final static String TABLE_NAME = " HIGHLIGHTS";
     public final static String COL_TITLE = "GAME";
     public final static String COL_DATE = "GAME_DATE";
     public final static String COL_ID = "_id";
     public final static String COL_URL = "URL";
+    public final static String COL_TEAM1 = "team1";
+    public final static String COL_TEAM2 = "team2";
 
     public SoccerOpener(Context ctx)
     {
@@ -24,7 +26,8 @@ public class SoccerOpener extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE " + TABLE_NAME + "( "
                 + COL_ID +" INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + COL_TITLE + " TEXT, " + COL_DATE + " TEXT," + COL_URL + " TEXT)");
+                + COL_TITLE + " TEXT, " + COL_DATE + " TEXT," + COL_URL + " TEXT,"
+                + COL_TEAM1 + " TEXT, " + COL_TEAM2 + " TEXT)");
     }
 
     @Override

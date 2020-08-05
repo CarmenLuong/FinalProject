@@ -102,7 +102,7 @@ public class FavoriteList extends AppCompatActivity {
         SoccerOpener dbOpener = new SoccerOpener(this);
         db = dbOpener.getWritableDatabase();
 
-        String [] columns = {dbOpener.COL_ID, dbOpener.COL_TITLE, dbOpener.COL_DATE, dbOpener.COL_URL};
+        String [] columns = {dbOpener.COL_ID, dbOpener.COL_TITLE, dbOpener.COL_DATE, dbOpener.COL_URL,dbOpener.COL_TEAM1,dbOpener.COL_TEAM2};
 
         Cursor results = db.query(false, dbOpener.TABLE_NAME, columns, null, null, null, null, null, null);
 
@@ -110,6 +110,8 @@ public class FavoriteList extends AppCompatActivity {
         int titleColIndex = results.getColumnIndex(dbOpener.COL_TITLE);
         int urlColIndex = results.getColumnIndex(dbOpener.COL_URL);
         int idColIndex = results.getColumnIndex(dbOpener.COL_ID);
+        int team1ColIndex = results.getColumnIndex(dbOpener.COL_TEAM1);
+        int team2ColIndex = results.getColumnIndex(dbOpener.COL_TEAM2);
 
         while(results.moveToNext())
         {
@@ -117,8 +119,10 @@ public class FavoriteList extends AppCompatActivity {
             long id = results.getLong(idColIndex);
             String date = results.getString(dateColIndex);
             String thisUrl = results.getString(urlColIndex);
+            String mTeam1 = results.getString(team1ColIndex);
+            String mTeam2 = results.getString(team2ColIndex);
 
-            favoritesList.add(new soccerScoreObject(id,match,date,thisUrl));
+            favoritesList.add(new soccerScoreObject(id,match,date,thisUrl,mTeam1,mTeam2));
 
 
         }
