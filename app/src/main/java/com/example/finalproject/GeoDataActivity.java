@@ -5,17 +5,26 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
 public class GeoDataActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    /**
+     * Toolbar at the top of the activity used to navigate to other features
+     */
     private Toolbar toolbar;
 
     @Override
@@ -44,17 +53,6 @@ public class GeoDataActivity extends AppCompatActivity implements NavigationView
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        onMenuItemClicked(item);
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        onMenuItemClicked(item);
-        return false;
-    }
-
-    private void onMenuItemClicked(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.soccermatchitem:
                 Intent goToSoccer = new Intent(this, MainActivity.class);
@@ -70,6 +68,16 @@ public class GeoDataActivity extends AppCompatActivity implements NavigationView
                 startActivity(goToDeezer);
                 break;
             case R.id.menu_help:
+                Toast.makeText(GeoDataActivity.this, getString(R.string.written_by, "GeoData", "Carmen Luong"), Toast.LENGTH_LONG).show();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        AlertDialog.Builder alertDialog;
+        switch (item.getItemId()) {
+            case R.id.instructions:
                 new AlertDialog.Builder(GeoDataActivity.this)
                         .setTitle(R.string.how_to_title)
                         .setMessage(R.string.how_to_message)
@@ -80,6 +88,44 @@ public class GeoDataActivity extends AppCompatActivity implements NavigationView
                             }
                         })
                         .show();
+                break;
+            case R.id.abouttheapi:
+                String url = "https://www.geodatasource.com/web-service";
+
+                Intent goToapi = new Intent(Intent.ACTION_VIEW);
+                goToapi.setData(Uri.parse(url));
+                startActivity(goToapi);
+                break;
+            case R.id.donate:
+
+                final EditText input = new EditText(this);
+                input.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.MATCH_PARENT);
+                alertDialog = new AlertDialog.Builder(GeoDataActivity.this);
+                input.setLayoutParams(lp);
+                alertDialog.setView(input);
+                alertDialog.setTitle(R.string.please_give_generously);
+                alertDialog.setMessage(R.string.how_much_money)
+                        .setPositiveButton(R.string.thank_you, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        }).create().show();
+
+                break;
         }
+
+        DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return false;
     }
 }

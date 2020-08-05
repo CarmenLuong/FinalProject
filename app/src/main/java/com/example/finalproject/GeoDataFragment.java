@@ -37,14 +37,41 @@ import java.util.List;
  */
 public class GeoDataFragment extends Fragment {
 
+    /**
+     * Key for the latitude
+     */
     private static final String LATITUDE_KEY = "latitude";
+    /**
+     * Key for the longitude
+     */
     private static final String LONGITUDE_KEY = "longitude";
+    /**
+     * EditText views for longitude and latitude
+     */
     private EditText mLongitudeEdit, mLatitudeEdit;
+    /**
+     * Button views for mSearchButton and mShowFavouriteButton
+     */
     private Button mSearchButton, mShowFavouriteButton;
+    /**
+     * ListView view for mLocationListView
+     */
     private ListView mLocationListView;
+    /**
+     * ProgressBar view for mProgressBar
+     */
     private ProgressBar mProgressBar;
+    /**
+     * CityListAdapter adapter used to render the cities inside mLocationListView
+     */
     private CityListAdapter mAdapter;
+    /**
+     * SQLiteDatabase used to fetch and store the favourite cities to the SQLite database
+     */
     private SQLiteDatabase db;
+    /**
+     * SharedPreferences used to store the last latitude and longitude entered by the user
+     */
     private SharedPreferences mSharedPreference;
 
     @Override
@@ -101,6 +128,10 @@ public class GeoDataFragment extends Fragment {
         mSharedPreference.edit().putString(LONGITUDE_KEY, mLongitudeEdit.getText().toString()).apply();
     }
 
+    /**
+     * This method is used to fetch all stored cities stored in the database that were favourited by the user
+     * @return the list of cities in the database
+     */
     private List<City> loadCityFromDatabase() {
         List<City> cityList = new ArrayList<>();
 
@@ -129,6 +160,9 @@ public class GeoDataFragment extends Fragment {
         return cityList;
     }
 
+    /**
+     * AsyncTask used to fetch the cities nearby the latitude and longitude entered by the user
+     */
     public class GeoDataQuery extends AsyncTask<String, Integer, String> {
 
         List<City> cityList = new ArrayList<>();

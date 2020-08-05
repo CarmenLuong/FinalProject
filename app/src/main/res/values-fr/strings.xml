@@ -72,5 +72,9 @@
     <string name="found_cities">Trouvé %1$d villes à proximité.</string>
     <string name="geo_data_title">Rechercher des villes à proximité</string>
     <string name="city_data_title">Informations sur la ville</string>
+    <string name="written_by">C\'est le %1$s activité, écrite par %2$s.</string>
+    <string name="please_give_generously">Merci de donner généreusement</string>
+    <string name="how_much_money">Combien d\'argent voulez-vous donner?</string>
+    <string name="thank_you">Je vous remercie</string>
 
 </resources>

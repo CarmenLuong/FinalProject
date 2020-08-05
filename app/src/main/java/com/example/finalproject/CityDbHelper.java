@@ -7,15 +7,45 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 public class CityDbHelper extends SQLiteOpenHelper {
-    public static final int DATABASE_VERSION = 3;
+    /**
+     * Version of the DB
+     */
+    public static final int DATABASE_VERSION = 4;
+    /**
+     * Name of the DB
+     */
     public static final String DATABASE_NAME = "Message.db";
-    public static final String TABLE_NAME = "Message";
+    /**
+     * Table name
+     */
+    public static final String TABLE_NAME = "City";
+    /**
+     * Column name for the id
+     */
     public static final String COLUMN_ID = "_id";
+    /**
+     * Column name for the country
+     */
     public static final String COLUMN_COUNTRY = "Country";
-    public static final String COLUMN_REGION = "REGION";
+    /**
+     * Column name for the region
+     */
+    public static final String COLUMN_REGION = "Region";
+    /**
+     * Column name for the city
+     */
     public static final String COLUMN_CITY = "City";
+    /**
+     * Column name for the currency
+     */
     public static final String COLUMN_CURRENCY = "Currency";
+    /**
+     * Column name for the latitude
+     */
     public static final String COLUMN_LATITUDE = "Latitude";
+    /**
+     * Column name for the longitude
+     */
     public static final String COLUMN_LONGITUDE = "Longitude";
 
     public CityDbHelper(@Nullable Context context){

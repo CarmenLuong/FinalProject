@@ -10,6 +10,9 @@ import android.widget.TextView;
 import java.util.List;
 
 public class CityListAdapter extends BaseAdapter {
+    /**
+     * List of cities that this adapter renders
+     */
     private List<City> cityList;
 
     public void setCityList(List<City> cityList) {

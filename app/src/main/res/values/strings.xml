@@ -55,6 +55,10 @@
     <string name="found_cities">Found %1$d cities nearby.</string>
     <string name="geo_data_title">Search for nearby cities</string>
     <string name="city_data_title">City Information</string>
+    <string name="written_by">This is the %1$s activity, written by %2$s.</string>
+    <string name="please_give_generously">Please give generously</string>
+    <string name="how_much_money">How much money do you want to donate?</string>
+    <string name="thank_you">Thank you</string>
 
 
     <string name="lyricIconTitle">Lyrics Song Search</string>

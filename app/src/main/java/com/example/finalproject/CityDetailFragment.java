@@ -23,20 +23,62 @@ import com.google.android.material.snackbar.Snackbar;
  */
 public class CityDetailFragment extends Fragment {
 
+    /**
+     * Argument key used for the id of the city
+     */
     private static final String ARG_ID = "id";
+    /**
+     * Argument key used for the country of the city
+     */
     private static final String ARG_COUNTRY = "country";
+    /**
+     * Argument key used for the region of the city
+     */
     private static final String ARG_REGION = "region";
+    /**
+     * Argument key used for the city name of the city
+     */
     private static final String ARG_CITY = "city";
+    /**
+     * Argument key used for the currency of the city
+     */
     private static final String ARG_CURRENCY = "currency";
+    /**
+     * Argument key used for the latitude of the city
+     */
     private static final String ARG_LATITUDE = "latitude";
+    /**
+     * Argument key used for the longitude of the city
+     */
     private static final String ARG_LONGITUDE = "longitude";
 
+    /**
+     * Variable used to store the id of the city in the database
+     */
     private long mId;
+    /**
+     * Variable used to store the country of the city
+     */
     private String mCountry;
+    /**
+     * Variable used to store the region of the city
+     */
     private String mRegion;
+    /**
+     * Variable used to store the city of the city
+     */
     private String mCity;
+    /**
+     * Variable used to store the currency of the city
+     */
     private String mCurrency;
+    /**
+     * Variable used to store the latitude of the city
+     */
     private String mLatitude;
+    /**
+     * Variable used to store the longitude of the city
+     */
     private String mLongitude;
     private TextView mCountryText, mRegionText, mCityText, mCurrencyText, mLatitudeText, mLongitudeText;
     private Button mGoogleMapButton, mFavouriteButton;
