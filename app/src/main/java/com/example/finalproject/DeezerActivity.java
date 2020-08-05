@@ -68,6 +68,10 @@ public class DeezerActivity extends AppCompatActivity implements NavigationView.
     ArrayList<DeezerArtistClass> savedArtistArray;
     SQLiteDatabase sqlDB;
 
+    /**
+     * file existance is intended to confirm a file exists before redownloading it
+     *
+     */
     public boolean fileExistance(String fname){
         File file = getBaseContext().getFileStreamPath(fname);
         return file.exists();   }
@@ -140,6 +144,9 @@ public class DeezerActivity extends AppCompatActivity implements NavigationView.
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+    /**
+     * printCursor is intended to pass through and track each entry inside the database
+     */
     void printCursor(Cursor c, int version) {
 
         int searchIndex = c.getColumnIndex(DeezerDatabase.COL_SEARCH_TITLE);
@@ -157,6 +164,9 @@ public class DeezerActivity extends AppCompatActivity implements NavigationView.
         Log.i("DeezerActivity", sb.toString());
     }
 
+    /**
+     * loadFromDataBase is intended to load entries in the database to be displayed after a user leaves the app
+     */
     protected void loadFromDataBase() {
         DeezerDatabase myOpener = new DeezerDatabase(this);
         sqlDB = myOpener.getWritableDatabase();
@@ -216,6 +226,9 @@ public class DeezerActivity extends AppCompatActivity implements NavigationView.
         return true;
     }
 
+    /**
+     * DeezerQuery is intended to search the api and collect information releveant to the users search
+     */
     private class DeezerQuery extends AsyncTask<String, Integer, String>{
 
         @Override

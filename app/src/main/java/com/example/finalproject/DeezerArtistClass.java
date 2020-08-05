@@ -8,6 +8,9 @@ public class DeezerArtistClass {
     Bitmap albumCover;
     Long id;
 
+    /**
+     * public class made for the creation of searched item objects to be stored and passed between classes
+     */
     public DeezerArtistClass(String title){
         this.title = title;
     }
