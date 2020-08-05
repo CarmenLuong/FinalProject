@@ -112,7 +112,7 @@ public class SongListClass extends AppCompatActivity implements NavigationView.O
         {
 
             case R.id.soccermatchitem:
-                Intent goToSoccer = new Intent(this, MainActivity.class);
+                Intent goToSoccer = new Intent(this, SoccerMain.class);
                 startActivity(goToSoccer);
                 break;
             case R.id.geodatasourceitem:

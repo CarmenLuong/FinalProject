@@ -114,7 +114,7 @@ public class SongLyricsPage extends AppCompatActivity implements NavigationView.
         {
 
             case R.id.soccermatchitem:
-                Intent goToSoccer = new Intent(this, MainActivity.class);
+                Intent goToSoccer = new Intent(this, SoccerMain.class);
                 startActivity(goToSoccer);
                 break;
             case R.id.geodatasourceitem:

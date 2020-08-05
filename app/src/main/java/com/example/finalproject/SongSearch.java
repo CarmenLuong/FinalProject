@@ -106,7 +106,7 @@ public class SongSearch extends AppCompatActivity implements NavigationView.OnNa
         {
 
             case R.id.soccermatchitem:
-                Intent goToSoccer = new Intent(SongSearch.this, MainActivity.class);
+                Intent goToSoccer = new Intent(SongSearch.this, SoccerMain.class);
                 startActivity(goToSoccer);
                 break;
             case R.id.geodatasourceitem:

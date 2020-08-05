@@ -6,8 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
+    Button goToScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,5 +41,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        goToScore = findViewById(R.id.SoccerMatch);
+
+        goToScore.setOnClickListener(Click -> {
+            Intent SeeScores = new Intent(MainActivity.this, SoccerMain.class);
+            startActivity(SeeScores);
+
+        });
+
+
     }
+
 }

@@ -35,6 +35,13 @@
         <activity
             android:name=".SongSearch"
             android:windowSoftInputMode="stateHidden" />
+        android:theme="@style/AppTheme">
+        <activity android:name=".SoccerWebViewActivity"></activity>
+        <activity android:name=".SoccerDeleteFragment" />
+        <activity android:name=".SoccerDeleteEmptyActivity" />
+        <activity android:name=".SoccerFavoriteList" />
+        <activity android:name=".SoccerEmptyActivity" />
+        <activity android:name=".SoccerMain" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

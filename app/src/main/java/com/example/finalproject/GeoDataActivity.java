@@ -55,7 +55,7 @@ public class GeoDataActivity extends AppCompatActivity implements NavigationView
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.soccermatchitem:
-                Intent goToSoccer = new Intent(this, MainActivity.class);
+                Intent goToSoccer = new Intent(this, SoccerMain.class);
                 startActivity(goToSoccer);
                 break;
             case R.id.songitem:
