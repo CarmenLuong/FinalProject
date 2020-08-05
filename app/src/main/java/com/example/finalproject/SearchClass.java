@@ -103,7 +103,7 @@ public class SearchClass extends AppCompatActivity implements NavigationView.OnN
                 break;
             case R.id.geodatasourceitem:
 
-                Intent goToGeo = new Intent(this, MainActivity.class);
+                Intent goToGeo = new Intent(this, GeoDataActivity.class);
                 startActivity(goToGeo);
                 break;
             case R.id.deezersongsearchitem:

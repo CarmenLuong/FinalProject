@@ -20,10 +20,4 @@
         android:orderInCategory="100"
         app:showAsAction="always"/>
 
-
-    <item android:id="@+id/menu_help"
-        android:icon="@drawable/menu"
-        android:title="@string/aboutThisProject"
-        app:showAsAction="never"
-        android:orderInCategory="0"/>
 </menu>
