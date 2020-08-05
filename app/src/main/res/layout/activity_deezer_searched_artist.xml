@@ -29,7 +29,7 @@
         android:id="@+id/albumNameTextField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/albumNameTextField"
+        android:text=""
         android:layout_below="@id/durationTextField"
         android:gravity="center"
         android:textSize="24dp"
@@ -37,9 +37,9 @@
 
     <ImageView
         android:id="@+id/albumArtField"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/albumNameTextField"
+        android:layout_alignParentBottom="true"
         android:gravity="center"
         />
 

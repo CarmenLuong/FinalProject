@@ -39,10 +39,20 @@
 
         <EditText
             android:id="@+id/searchedSong"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/DeezerTitle"
             android:hint="@string/enterSongHere"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@id/deezerSaveButton"/>
+
+        <Button
+            android:id="@+id/deezerSaveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/deezerSaveButton"
+            android:layout_below="@+id/DeezerTitle"
+            android:layout_alignParentRight="true"
             />
 
         <ImageView

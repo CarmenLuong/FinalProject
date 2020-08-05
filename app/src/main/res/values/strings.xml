@@ -47,4 +47,6 @@
     <string name="durationTextField">Song Duration:</string>
     <string name="albumNameTextField">Album Name:</string>
     <string name="albumCoverImageView">Cover Art:</string>
+    <string name="deezerDeleteButton">Delete?</string>
+    <string name="deezerSaveButton">Save?</string>
 </resources>

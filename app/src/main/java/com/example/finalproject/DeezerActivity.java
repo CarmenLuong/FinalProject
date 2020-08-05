@@ -8,8 +8,11 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -42,6 +45,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class DeezerActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -49,6 +54,8 @@ public class DeezerActivity extends AppCompatActivity implements NavigationView.
     String searchedString;
     EditText deezerSearchBox;
     Button deezerArtistSearch;
+    Button deezerFavouriteButton;
+    Button deezerSaveButton;
     URL artistUrl;
     URL searchedUrl;
     String tracklist;
@@ -58,6 +65,8 @@ public class DeezerActivity extends AppCompatActivity implements NavigationView.
     String songTitle;
     String albumName;
     String iconName;
+    ArrayList<DeezerArtistClass> savedArtistArray;
+    SQLiteDatabase sqlDB;
 
     public boolean fileExistance(String fname){
         File file = getBaseContext().getFileStreamPath(fname);
@@ -71,10 +80,29 @@ public class DeezerActivity extends AppCompatActivity implements NavigationView.
         deezerLoadingBar = findViewById(R.id.deezerLoadingBar);
         deezerSearchBox = findViewById(R.id.searchedSong);
         deezerArtistSearch = findViewById(R.id.searchButton);
+        deezerFavouriteButton = findViewById(R.id.favouriteButton);
+        deezerSaveButton = findViewById(R.id.deezerSaveButton);
         Toolbar tBar = (Toolbar)findViewById(R.id.TB);
         setSupportActionBar(tBar);
 
+        loadFromDataBase();
+
         deezerLoadingBar.setVisibility(View.VISIBLE);
+
+        deezerSaveButton.setOnClickListener( v -> {
+            String searchToSave = deezerSearchBox.getText().toString();
+            ContentValues newRow = new ContentValues();
+            newRow.put(DeezerDatabase.COL_SEARCH_TITLE, searchToSave);
+            long newID = sqlDB.insert(DeezerDatabase.TABLE_NAME, null, newRow);
+            DeezerArtistClass saveSearch = new DeezerArtistClass(newID, searchToSave);
+            savedArtistArray.add(saveSearch);
+            deezerSearchBox.setText("");
+        });
+
+        deezerFavouriteButton.setOnClickListener( v -> {
+            Intent goToDeezerList = new Intent(DeezerActivity.this, DeezerListView.class);
+            startActivity(goToDeezerList);
+        });
 
         deezerArtistSearch.setOnClickListener( v -> {
             tracklist = null;
@@ -84,7 +112,12 @@ public class DeezerActivity extends AppCompatActivity implements NavigationView.
                 DeezerQuery query = new DeezerQuery();
                 query.execute("https://api.deezer.com/search/artist/?q=" + searchedString + "&output=xml");
                 Log.e("DeezerActivity", "should run query");
+                Log.i("DeezerActivity", "The variables are: " + songTitle + " " + songDuration + " " + songTitle + " " + albumCoverUrl + " " + tracklist);
                 Intent goToDeezerSearchedArtist = new Intent(DeezerActivity.this, DeezerSearchedArtist.class);
+                goToDeezerSearchedArtist.putExtra("Url", tracklist);
+                goToDeezerSearchedArtist.putExtra("artistTitle", songTitle);
+//                goToDeezerSearchedArtist.putExtra("songDuration", songDuration);
+//                goToDeezerSearchedArtist.putExtra("albumName", albumName);
                 startActivity(goToDeezerSearchedArtist);
 
             } else {
@@ -101,6 +134,45 @@ public class DeezerActivity extends AppCompatActivity implements NavigationView.
         NavigationView navigationView = findViewById(R.id.nav_view);
 
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    void printCursor(Cursor c, int version) {
+
+        int searchIndex = c.getColumnIndex(DeezerDatabase.COL_SEARCH_TITLE);
+        int idIndex = c.getColumnIndex(DeezerDatabase.COL_ID);
+        StringBuilder sb = new StringBuilder("\nResults list: ");
+
+        if (c.moveToFirst()) {
+            do {
+                String search = c.getString(searchIndex);
+                long id = c.getLong(idIndex);
+                sb.append("\nRow: ").append(c.getPosition()).append("\nId: ").append(id).append("\nMessage: ")
+                        .append(search + "\n");
+            } while (c.moveToNext());
+        }
+        Log.i("DeezerActivity", sb.toString());
+    }
+
+    protected void loadFromDataBase() {
+        DeezerDatabase myOpener = new DeezerDatabase(this);
+        sqlDB = myOpener.getWritableDatabase();
+
+        String[] columns = {DeezerDatabase.COL_ID, DeezerDatabase.COL_SEARCH_TITLE};
+
+        Cursor results = sqlDB.query(false, DeezerDatabase.TABLE_NAME, columns, null, null, null, null, null, null);
+
+        int idColIndex = results.getColumnIndex(DeezerDatabase.COL_ID);
+        int searchColumnIndex = results.getColumnIndex(DeezerDatabase.COL_SEARCH_TITLE);
+
+        while(results.moveToNext())
+        {
+            Long id = results.getLong(idColIndex);
+            String search = results.getString(searchColumnIndex);
+
+            //add the new Contact to the array list:
+            savedArtistArray.add(new DeezerArtistClass(id, search));
+        }
+        printCursor(results, 1);
     }
 
 
@@ -196,15 +268,18 @@ public class DeezerActivity extends AppCompatActivity implements NavigationView.
 
                                 JSONArray artistData = artistInfo.getJSONArray("data");
 
-                                int i;
-                                for(i = 0; i < artistData.length(); i++) {
 
-                                    songTitle = String.valueOf((String) artistInfo.getString("title"));
-                                    songDuration = String.valueOf((String) artistInfo.getString("duration"));
-                                    albumName = String.valueOf((String) artistInfo.getString("album"));
-                                    albumCoverUrl = String.valueOf((String) artistInfo.getString("cover"));
+                                for(int i = 0; i < artistData.length(); i++) {
+
+                                    songTitle = artistData.getJSONObject(i).getString("title");
+//                                    songDuration = String.valueOf((String) artistInfo.getString("duration"));
+//                                    albumName = String.valueOf((String) artistInfo.getString("album"));
+//                                    albumCoverUrl = String.valueOf((String) artistInfo.getString("cover"));
+                                   // savedArtistArray.add(new DeezerArtistClass(songTitle));
+
                                 }
-                                Log.i("MainActivity", "The variables are: " + songTitle + " " + songDuration + " " + songTitle + " " + albumCoverUrl) ;
+                                Log.i("DeezerActivity", savedArtistArray.toString());
+                                Log.i("DeezerActivity", "The variables are: " + songTitle + " " + songDuration + " " + songTitle + " " + albumCoverUrl + " " + tracklist) ;
 
                             } catch (Exception e){
 
@@ -262,24 +337,10 @@ public class DeezerActivity extends AppCompatActivity implements NavigationView.
             deezerLoadingBar.setProgress(values[0]);
         }
 
-        String songDuration;
-        String songTitle;
-        String albumName;
+
         @Override
         protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            songDuration = findViewById(R.id.minTempTextView);
-            maxView = findViewById(R.id.maxTempTextView);
-            currentView = findViewById(R.id.currentTempTextView);
-            uvView = findViewById(R.id.uvTextView);
-            weatherIView = findViewById(R.id.weatherImageView);
 
-            minView.setText(getString(R.string.minTempString, minTemp));
-            maxView.setText(getString(R.string.maxTempString, maxTemp));
-            currentView.setText(getString(R.string.currentTempString, currentTemp));
-            uvView.setText(getString(R.string.uvString, uv));
-            weatherIView.setImageBitmap(currentWeatherImage);
-            weatherLoadingBar.setVisibility(View.INVISIBLE);
         }
     }
 

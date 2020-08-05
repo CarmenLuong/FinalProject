@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".DeezerSearchedArtist"></activity>
+        <activity android:name=".DeezerListView"></activity>
+        <activity android:name=".DeezerSearchedArtist" />
         <activity android:name=".SongListView" />
         <activity android:name=".DeezerActivity" />
         <activity android:name=".DeezerSearch" />

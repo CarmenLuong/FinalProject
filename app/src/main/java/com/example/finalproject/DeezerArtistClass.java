@@ -8,6 +8,11 @@ public class DeezerArtistClass {
     Bitmap albumCover;
     Long id;
 
+    public DeezerArtistClass(Long id, String title){
+        this.id = id;
+        this.title = title;
+    }
+
     public DeezerArtistClass(Long id, String title, String duration, String albumName, Bitmap albumCover){
         this.id = id;
         this.title = title;
