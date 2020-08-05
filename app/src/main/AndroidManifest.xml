@@ -18,6 +18,7 @@
         <activity android:name=".FavoriteDisplayed" />
         <activity android:name=".SongListClass" />
         <activity android:name=".LyricsPage" />
+        <activity android:name=".GeoDataActivity"/>
         <activity
             android:name=".SearchClass"
             android:windowSoftInputMode="stateHidden"

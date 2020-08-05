@@ -33,4 +33,25 @@
     <string name="slhelpitem">Élément de recherche de paroles de chanson</string>
     <string name="open" />
     <string name="close" />
+    <string name="hello_blank_fragment">Bonjour fragment vierge</string>
+    <string name="longitude_text">Longitude: </string>
+    <string name="latitude_text">Latitude: </string>
+    <string name="search_button">Chercher</string>
+    <string name="favourite_button">Favoris</string>
+    <string name="remove_from_favourite">Supprimer des favoris</string>
+    <string name="add_to_favourite">Ajouter aux favoris</string>
+    <string name="google_map">Allez sur Google Maps</string>
+    <string name="removed_variable_from_favourites">Supprimé %1$s des favoris.</string>
+    <string name="added_variable_to_favourites">Ajouté %1$s aux favoris.</string>
+    <string name="help_menu">Aidez-moi</string>
+    <string name="how_to_title">Comment utiliser cette fonction</string>
+    <string name="how_to_message">Entrez les chiffres de latitude et de longitude pour rechercher les villes à proximité. Appuyez sur une ville pour voir les détails et mettre la ville en favori. Appuyez sur le bouton Favoris pour voir tous vos favoris.</string>
+    <string name="country_text_variable">Pays: %1$s</string>
+    <string name="region_text_variable">Région: %1$s</string>
+    <string name="city_text_variable">Ville: %1$s</string>
+    <string name="currency_text_variable">Devise: %1$s</string>
+    <string name="latitude_text_variable">Latitude: %1$s</string>
+    <string name="longitude_text_variable">Longitude: %1$s</string>
+    <string name="found_cities">Trouvé %1$d villes à proximité.</string>
+
 </resources>

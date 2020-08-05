@@ -32,5 +32,25 @@
     <string name="slhelpitem">Song Lyric Search Item</string>
     <string name="open" />
     <string name="close" />
-    <string name="menuItem">Options</string>
+    <string name="menuItem">Options</string>    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="longitude_text">Longitude: </string>
+    <string name="latitude_text">Latitude: </string>
+    <string name="search_button">Search</string>
+    <string name="favourite_button">Favourites</string>
+    <string name="remove_from_favourite">Remove from favourite</string>
+    <string name="add_to_favourite">Add to favourite</string>
+    <string name="google_map">Go to Google Maps</string>
+    <string name="removed_variable_from_favourites">Removed %1$s from favourites.</string>
+    <string name="added_variable_to_favourites">Added %1$s to favourites.</string>
+    <string name="help_menu">Help</string>
+    <string name="how_to_title">How to use this feature</string>
+    <string name="how_to_message">Enter latitude and longitude numbers to search for nearby cities. Press on a city to see the details and to favourite the city. Press the Favourites button to see all your favourites.</string>
+    <string name="country_text_variable">Country: %1$s</string>
+    <string name="region_text_variable">Region: %1$s</string>
+    <string name="city_text_variable">City: %1$s</string>
+    <string name="currency_text_variable">Currency: %1$s</string>
+    <string name="latitude_text_variable">Latitude: %1$s</string>
+    <string name="longitude_text_variable">Longitude: %1$s</string>
+    <string name="found_cities">Found %1$d cities nearby.</string>
+
 </resources>
