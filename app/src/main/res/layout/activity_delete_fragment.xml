@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SoccerDetailFragment"
+    android:id="@+id/frame2">
+
+    <LinearLayout
+        android:id="@+id/Linear1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="fill"
+
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/gameHeader"
+            android:layout_width="match_parent"
+            android:layout_height="84dp"
+            android:textAlignment="center"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/favTeam1"
+            android:layout_width="match_parent"
+            android:layout_height="85dp"
+            android:textAlignment="center"
+            tools:ignore="RtlCompat" />
+
+        <TextView
+            android:id="@+id/favTeam2"
+            android:layout_width="match_parent"
+            android:layout_height="85dp"
+            android:textAlignment="center"
+            tools:ignore="RtlCompat" />
+
+
+        <Button
+            android:id="@+id/watchHighlights"
+            android:layout_width="match_parent"
+            android:layout_height="85dp"
+            android:text="@string/url"
+            android:textAlignment="center" />
+
+        <Button
+            android:id="@+id/RemoveFavourite"
+            android:layout_width="match_parent"
+            android:layout_height="85dp"
+            android:text="@string/remove_from_db"
+            />
+
+    </LinearLayout>
+
+</FrameLayout>

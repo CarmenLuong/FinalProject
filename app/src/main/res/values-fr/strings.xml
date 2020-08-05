@@ -73,4 +73,29 @@
     <string name="geo_data_title">Rechercher des villes à proximité</string>
     <string name="city_data_title">Informations sur la ville</string>
 
+    <string name ="app_name">Final Project</string>
+    <string name="soccerHighlights">Soccer match Highlights</string>
+    <string name="JoshMpaka">By: Joshua Mpaka</string>
+    <string name="songLyricsSearch">Song Lyrics Search</string>
+    <string name="DevynnL">By: Devynn Lyle</string>
+    <string name="Deezer">Dezzer Song search api</string>
+    <string name="DylanWilc">By: Dylan Wilcox</string>
+    <string name="GeoDataSource">Geo data source</string>
+    <string name="CarmenL">By: Carmen Luong</string>
+
+    <string name="Game_Title_header">GameTitle</string>
+    <string name="team1">equipe 1</string>
+    <string name="team2">equipe 2</string>
+    <string name="url">Regarder les temps forts du match</string>
+    <string name="add_to_fav">Ajouter aux Favoris</string>
+    <string name="favouritesGames">Favoris</string>
+    <string name="aboutThisProject">à propos de ce projet</string>
+    <string name="geo_app">GEO</string>
+    <string name="deezer_app">Deezer</string>
+    <string name="songs_lyrics">Chanson et paroles</string>
+    <string name="soccerHelp">Voici l\'activité principale de football, écrite par: Joshua Mpaka</string>
+    <string name="open" />
+    <string name="close" />
+    <string name="remove_from_db">Supprimer des favoris</string>
+    <string name="goToFav">aller aux favoris</string>
 </resources>
