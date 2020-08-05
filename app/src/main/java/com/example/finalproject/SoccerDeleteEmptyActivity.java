@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class DeleteEmptyActivity extends AppCompatActivity {
+public class SoccerDeleteEmptyActivity extends AppCompatActivity {
 
     // for phone layout
 
@@ -15,7 +15,7 @@ public class DeleteEmptyActivity extends AppCompatActivity {
 
         Bundle dataToPass = getIntent().getExtras();
 
-        DeleteFragment delFragment = new DeleteFragment();
+        SoccerDeleteFragment delFragment = new SoccerDeleteFragment();
         delFragment.setArguments( dataToPass );
         getSupportFragmentManager()
                 .beginTransaction()

@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +17,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
-public class DeleteFragment extends Fragment {
+public class SoccerDeleteFragment extends Fragment {
 
     ArrayList<soccerScoreObject> favoritesList = new ArrayList<>();
     private AppCompatActivity parentActivity;
@@ -30,7 +29,7 @@ public class DeleteFragment extends Fragment {
 
     // for tablet
 
-    public DeleteFragment() {
+    public SoccerDeleteFragment() {
         // Required empty public constructor
     }
 
@@ -45,20 +44,20 @@ public class DeleteFragment extends Fragment {
         dataFromActivity = getArguments();
         View result =  inflater.inflate(R.layout.activity_delete_fragment, container, false);
 
-        Long gameId = dataFromActivity.getLong(FavoriteList.ITEM_ID);
-        String url = dataFromActivity.getString(FavoriteList.ITEM_URL);
+        Long gameId = dataFromActivity.getLong(SoccerFavoriteList.ITEM_ID);
+        String url = dataFromActivity.getString(SoccerFavoriteList.ITEM_URL);
 
         TextView gameTitle = (TextView)result.findViewById(R.id.gameHeader);
-        gameTitle.setText(dataFromActivity.getString(FavoriteList.ITEM_SELECTED));
+        gameTitle.setText(dataFromActivity.getString(SoccerFavoriteList.ITEM_SELECTED));
 
         TextView gameDate = (TextView)result.findViewById(R.id.date);
-        gameDate.setText(dataFromActivity.getString(FavoriteList.ITEM_DATE));
+        gameDate.setText(dataFromActivity.getString(SoccerFavoriteList.ITEM_DATE));
 
         TextView team1 = (TextView)result.findViewById(R.id.favTeam1);
-        team1.setText(dataFromActivity.getString(FavoriteList.ITEM_TEAM1));
+        team1.setText(dataFromActivity.getString(SoccerFavoriteList.ITEM_TEAM1));
 
         TextView team2 = (TextView)result.findViewById(R.id.favTeam2);
-        team2.setText(dataFromActivity.getString(FavoriteList.ITEM_TEAM2));
+        team2.setText(dataFromActivity.getString(SoccerFavoriteList.ITEM_TEAM2));
 
         Button watchHighlights = (Button)result.findViewById(R.id.watchHighlights);
         watchHighlights.setOnClickListener( click -> {
@@ -66,7 +65,7 @@ public class DeleteFragment extends Fragment {
             urlToPass.putString(URL,url);
 
 
-            Intent intent = new Intent(getActivity(),WebViewActivity.class);
+            Intent intent = new Intent(getActivity(), SoccerWebViewActivity.class);
             intent.putExtras(urlToPass);
             startActivity(intent);
         });
@@ -75,7 +74,7 @@ public class DeleteFragment extends Fragment {
         deleteFromDb.setOnClickListener( click -> {
             db.execSQL("DELETE FROM " + SoccerOpener.TABLE_NAME +  " WHERE " + SoccerOpener.COL_ID + "=?",
                     new String[] {String.valueOf(gameId)});
-            Snackbar.make(deleteFromDb,"\"" + dataFromActivity.getString(FavoriteList.ITEM_SELECTED) + " was removed from favorites!",Snackbar.LENGTH_LONG).show();
+            Snackbar.make(deleteFromDb,"\"" + dataFromActivity.getString(SoccerFavoriteList.ITEM_SELECTED) + " was removed from favorites!",Snackbar.LENGTH_LONG).show();
 
         });
 

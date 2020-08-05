@@ -9,9 +9,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 
-import android.content.ContentValues;
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -32,7 +30,6 @@ import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -111,7 +108,7 @@ public class SoccerMain extends AppCompatActivity implements NavigationView.OnNa
 
             if(isTablet)
             {
-                DetailFragment dFragment = new DetailFragment();
+                SoccerDetailFragment dFragment = new SoccerDetailFragment();
                 dFragment.setArguments( dataToPass );
                 getSupportFragmentManager()
                         .beginTransaction()
@@ -120,7 +117,7 @@ public class SoccerMain extends AppCompatActivity implements NavigationView.OnNa
             }
             else //isPhone
             {
-                Intent nextActivity = new Intent(SoccerMain.this, EmptyActivity.class);
+                Intent nextActivity = new Intent(SoccerMain.this, SoccerEmptyActivity.class);
                 nextActivity.putExtras(dataToPass);
                 startActivity(nextActivity);
             }
@@ -129,7 +126,7 @@ public class SoccerMain extends AppCompatActivity implements NavigationView.OnNa
         favButton = findViewById(R.id.FavButton);
 
         favButton.setOnClickListener( click -> {
-            Intent SeeFavorites = new Intent(SoccerMain.this, FavoriteList.class);
+            Intent SeeFavorites = new Intent(SoccerMain.this, SoccerFavoriteList.class);
             startActivity(SeeFavorites);
         });
 
@@ -211,7 +208,7 @@ public class SoccerMain extends AppCompatActivity implements NavigationView.OnNa
 
                 break;
             case R.id.favourites:
-                Intent SeeFavorites = new Intent(SoccerMain.this, FavoriteList.class);
+                Intent SeeFavorites = new Intent(SoccerMain.this, SoccerFavoriteList.class);
                 startActivity(SeeFavorites);
                 message = "You clicked on favorites";
                 break;

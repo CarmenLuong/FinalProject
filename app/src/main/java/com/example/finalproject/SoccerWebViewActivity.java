@@ -2,15 +2,12 @@ package com.example.finalproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import java.net.URL;
-
-public class WebViewActivity extends AppCompatActivity {
+public class SoccerWebViewActivity extends AppCompatActivity {
     private AppCompatActivity parentActivity;
     private WebView webView;
     private Bundle dataFromActivity;
@@ -24,7 +21,7 @@ public class WebViewActivity extends AppCompatActivity {
 
         webView = findViewById(R.id.webView);
         webView.setWebViewClient(new WebViewClient());
-        webView.loadUrl(String.valueOf(dataFromActivity.get(DetailFragment.URL)));
+        webView.loadUrl(String.valueOf(dataFromActivity.get(SoccerDetailFragment.URL)));
 
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);

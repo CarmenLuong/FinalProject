@@ -13,7 +13,7 @@ import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 
-public class FavoriteList extends AppCompatActivity {
+public class SoccerFavoriteList extends AppCompatActivity {
 
     SQLiteDatabase db;
     ArrayList<soccerScoreObject> favoritesList = new ArrayList<>();
@@ -78,7 +78,7 @@ public class FavoriteList extends AppCompatActivity {
 
             if(isTablet)
             {
-                DeleteFragment delFragment = new DeleteFragment();
+                SoccerDeleteFragment delFragment = new SoccerDeleteFragment();
                 delFragment.setArguments( dataToPass );
                 getSupportFragmentManager()
                         .beginTransaction()
@@ -87,7 +87,7 @@ public class FavoriteList extends AppCompatActivity {
             }
             else //isPhone
             {
-                Intent nextActivity = new Intent(FavoriteList.this, DeleteEmptyActivity.class);
+                Intent nextActivity = new Intent(SoccerFavoriteList.this, SoccerDeleteEmptyActivity.class);
                 nextActivity.putExtras(dataToPass);
                 startActivity(nextActivity);
             }

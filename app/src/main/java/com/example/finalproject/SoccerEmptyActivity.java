@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class EmptyActivity extends AppCompatActivity {
+public class SoccerEmptyActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -13,7 +13,7 @@ public class EmptyActivity extends AppCompatActivity {
 
         Bundle dataToPass = getIntent().getExtras();
 
-        DetailFragment dFragment = new DetailFragment();
+        SoccerDetailFragment dFragment = new SoccerDetailFragment();
         dFragment.setArguments( dataToPass );
         getSupportFragmentManager()
                 .beginTransaction()

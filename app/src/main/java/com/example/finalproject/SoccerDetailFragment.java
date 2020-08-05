@@ -3,9 +3,7 @@ package com.example.finalproject;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,14 +12,13 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
-public class DetailFragment extends Fragment {
+public class SoccerDetailFragment extends Fragment {
 
     ArrayList<soccerScoreObject> favoritesList = new ArrayList<>();
     private AppCompatActivity parentActivity;
@@ -32,7 +29,7 @@ public class DetailFragment extends Fragment {
 
 
 
-    public DetailFragment() {
+    public SoccerDetailFragment() {
         // Required empty public constructor
     }
 
@@ -91,7 +88,7 @@ public class DetailFragment extends Fragment {
             urlToPass.putString(URL,url);
 
 
-                Intent intent = new Intent(getActivity(),WebViewActivity.class);
+                Intent intent = new Intent(getActivity(), SoccerWebViewActivity.class);
                 intent.putExtras(urlToPass);
                 startActivity(intent);
 
