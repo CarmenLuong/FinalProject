@@ -140,7 +140,7 @@ public class SongSearchClass extends AppCompatActivity implements NavigationView
                         }).create().show();
                 break;
             case R.id.abouttheapi:
-                String url = "https://lyricovh.docs.apiary.io/#";
+                String url = "https://lyricsovh.docs.apiary.io/#";
 
                 Intent goToapi = new Intent(Intent.ACTION_VIEW);
                 goToapi.setData(Uri.parse(url));

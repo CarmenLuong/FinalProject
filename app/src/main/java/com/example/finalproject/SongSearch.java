@@ -155,7 +155,7 @@ public class SongSearch extends AppCompatActivity implements NavigationView.OnNa
                         }).create().show();
                 break;
             case R.id.abouttheapi:
-                String url = "https://lyricovh.docs.apiary.io/#";
+                String url = "https://lyricsovh.docs.apiary.io/#";
 
                 Intent goToapi = new Intent(Intent.ACTION_VIEW);
                 goToapi.setData(Uri.parse(url));
