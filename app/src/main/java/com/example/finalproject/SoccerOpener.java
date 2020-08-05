@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 
 public class SoccerOpener extends SQLiteOpenHelper {
     protected final static String DATABASE_NAME = "ScoreDb";
-    protected final static int VERSION_NUM = 7;
+    protected final static int VERSION_NUM = 8;
     public final static String TABLE_NAME = " HIGHLIGHTS";
     public final static String COL_TITLE = "GAME";
     public final static String COL_DATE = "GAME_DATE";

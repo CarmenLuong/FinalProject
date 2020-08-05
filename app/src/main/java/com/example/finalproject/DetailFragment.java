@@ -69,7 +69,7 @@ public class DetailFragment extends Fragment {
 
 
         addToFav.setOnClickListener(Click -> {
-
+                
             ContentValues newRowValues = new ContentValues();
             newRowValues.put(SoccerOpener.COL_TITLE, game);
             newRowValues.put(SoccerOpener.COL_DATE, date);
@@ -100,6 +100,14 @@ public class DetailFragment extends Fragment {
         });
 
         return result;
+    }
+
+    public boolean contains(ArrayList<soccerScoreObject> matches, soccerScoreObject game){
+        for(soccerScoreObject e : matches){
+            if(e.equals(game))
+                return true;
+        }
+        return false;
     }
 
 
