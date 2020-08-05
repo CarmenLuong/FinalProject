@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name ="app_name">Projet Final</string>
-    <string name="soccerHighlights">Faits saillants du match de football</string>
-    <string name="JoshMpaka">De: Joshua Mpaka</string>
-    <string name="songLyricsSearch">Recherche de paroles de chansons</string>
-    <string name="DevynnL">De: Devynn Lyle</string>
-    <string name="Deezer">API Recherche de chanson Deezer</string>
-    <string name="DylanWilc">De: Dylan Wilcox</string>
-    <string name="GeoDataSource">Source de données géographiques</string>
-    <string name="CarmenL">De: Carmen Luong</string>
     <string name="SongSearchPageName">Recherche de Paroles de Chansons</string>
     <string name="enterYaEmail">Veuillez entrer votre email pour continuer: </string>
     <string name="yourEmailHere">"Votre email ici:"</string>
@@ -28,11 +19,8 @@
     <string name="soccIconName">Faits saillants du match</string>
     <string name="GEO">Source de données GEO</string>
     <string name="deezI">Paroles de chansons de Deezer</string>
-    <string name="aboutThisProject">À propos de ce projet</string>
     <string name="songlyrichelpitem">Il s\'agit de l\'activité de recherche de paroles de chansons, écrite par: Devynn Lyle</string>
     <string name="slhelpitem">Élément de recherche de paroles de chanson</string>
-    <string name="open" />
-    <string name="close" />
     <string name="menuItem">Options</string>
     <string name="lyricIconTitle">Paroles Song Search</string>
     <string name="deezerContinueButt">Continuer à la recherche de chansons Deezer</string>

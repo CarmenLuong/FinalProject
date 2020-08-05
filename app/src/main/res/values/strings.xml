@@ -80,13 +80,10 @@
     <string name="url">Watch Match highlights</string>
     <string name="add_to_fav">Add to Favorites</string>
     <string name="favouritesGames">Favorites</string>
-    <string name="aboutThisProject">About this Project</string>
     <string name="geo_app">GEO</string>
     <string name="deezer_app">Deezer</string>
     <string name="songs_lyrics">Songs and Lyrics</string>
     <string name="soccerHelp">This is the Main soccer activity, written by : Joshua Mpaka</string>
-    <string name="open" />
-    <string name="close" />
     <string name="remove_from_db">Remove from Favorite</string>
     <string name="goToFav">Go to Favorites</string>
 </resources>
