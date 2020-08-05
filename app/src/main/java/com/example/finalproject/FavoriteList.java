@@ -7,7 +7,9 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 
@@ -25,6 +27,7 @@ public class FavoriteList extends AppCompatActivity {
     public static final String ITEM_URL = "match";
     public static final String ITEM_IS_FAVORITE = "favorites";
     boolean isTablet;
+    ProgressBar favLoading;
 
 
     @Override
@@ -33,11 +36,18 @@ public class FavoriteList extends AppCompatActivity {
         setContentView(R.layout.activity_favorite_list);
 
         myList = findViewById(R.id.FavoritesList);
+        favLoading = findViewById(R.id.favBar);
+        favLoading.setVisibility(View.VISIBLE);
 
         adp = new SoccerAdapter(this,R.layout.favorites_score,favoritesList);
         loadDataFromDatabase();
         adp.setListData(favoritesList);
         myList.setAdapter(adp);
+        favLoading.setProgress(100);
+        favLoading.setVisibility(View.GONE);
+
+
+
 
         myList.setOnItemLongClickListener((parent, view, position, id) -> {
             AlertDialog.Builder alterDialogueBuilder = new AlertDialog.Builder(this);

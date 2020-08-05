@@ -13,6 +13,13 @@
         android:textSize="30dp"
         android:textAlignment="center"/>
 
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/favBar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        />
+
     <ListView
         android:id="@+id/FavoritesList"
         android:layout_width="match_parent"

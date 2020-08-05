@@ -21,9 +21,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,23 +43,26 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class SoccerMain extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
-    ArrayList<soccerScoreObject> matchList = new ArrayList<>();
-    SQLiteDatabase db;
-    SoccerAdapter adp;
-    ListView myList;
-    TextView scores;
-    String team1, team2;
-    String title;
-    String date;
-    String game_url;
-    public static final String ITEM_ID = "id";
-    public static final String ITEM_SELECTED = "GAME";
-    public static final String ITEM_TEAM1 = "team1";
-    public static final String ITEM_TEAM2 = "team2";
-    public static final String ITEM_DATE = "date";
-    public static final String ITEM_URL = "match";
-    public static final String ITEM_IS_FAVORITE = "favorites";
-    boolean isTablet;
+    private ArrayList<soccerScoreObject> matchList = new ArrayList<>();
+    private SQLiteDatabase db;
+    private SoccerAdapter adp;
+    private ListView myList;
+    private TextView scores;
+    private String team1, team2;
+    private String title;
+    private String date;
+    private String game_url;
+    private Button favButton;
+    private ProgressBar mProgressBar;
+
+    private static final String ITEM_ID = "id";
+    private static final String ITEM_SELECTED = "GAME";
+    private static final String ITEM_TEAM1 = "team1";
+    private static final String ITEM_TEAM2 = "team2";
+    private static final String ITEM_DATE = "date";
+    private static final String ITEM_URL = "match";
+    private static final String ITEM_IS_FAVORITE = "favorites";
+    private boolean isTablet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +89,8 @@ public class SoccerMain extends AppCompatActivity implements NavigationView.OnNa
 
         navigationView.setNavigationItemSelectedListener(this);
 
-
+        mProgressBar = findViewById(R.id.mainProgress);
+        mProgressBar.setVisibility(View.VISIBLE);
         adp = new SoccerAdapter(this,R.layout.game_score,matchList);
         adp.setListData(matchList);
         myList.setAdapter(adp);
@@ -118,6 +124,14 @@ public class SoccerMain extends AppCompatActivity implements NavigationView.OnNa
                 startActivity(nextActivity);
             }
         });
+
+        favButton = findViewById(R.id.FavButton);
+
+        favButton.setOnClickListener( click -> {
+            Intent SeeFavorites = new Intent(SoccerMain.this, FavoriteList.class);
+            startActivity(SeeFavorites);
+        });
+
 
     }
 
@@ -284,6 +298,7 @@ public class SoccerMain extends AppCompatActivity implements NavigationView.OnNa
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             adp.notifyDataSetChanged();
+            mProgressBar.setVisibility(View.GONE);
 
 
         }

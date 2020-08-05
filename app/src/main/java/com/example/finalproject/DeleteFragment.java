@@ -69,7 +69,7 @@ public class DeleteFragment extends Fragment {
             db.execSQL("DELETE FROM " + SoccerOpener.TABLE_NAME +  " WHERE " + SoccerOpener.COL_ID + "=?",
                     new String[] {String.valueOf(gameId)});
             Snackbar.make(deleteFromDb,"\"" + dataFromActivity.getString(FavoriteList.ITEM_SELECTED) + " was removed from favorites!",Snackbar.LENGTH_LONG).show();
-
+            getActivity().onBackPressed();
         });
 
 
