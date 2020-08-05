@@ -34,4 +34,20 @@
     <string name="open" />
     <string name="close" />
     <string name="menuItem">Options</string>
+    <string name="lyricIconTitle">Paroles Song Search</string>
+    <string name="deezerContinueButt">Continuer à la recherche de chansons Deezer</string>
+    <string name="deezeremailtoast">Nous ne vous enverrons pas d\'e-mails! C\'est uniquement à des fins de recherche.</string>
+    <string name="deezerhelpitem">Il s\'agit de l\'activité de recherche de chansons Deezer, écrit par: Dylan Wilcox</string>
+    <string name="DeezerSearchTitle">Deezer Song Search</string>
+    <string name="searchSongs">Recherchez et écoutez de la musique que vous voulez!</string>
+    <string name="enterSongHere">Entrez votre artiste ici!</string>
+    <string name="searchButton">Recherche d\'artiste</string>
+    <string name="favouriteButton">Aller à Favoris</string>
+    <string name="errorSearching">Impossible de rechercher, s\'il vous plaît entrez un artiste</string>
+    <string name="artistTitleTextField">Nom de l\'artiste:</string>
+    <string name="durationTextField">Durée de la chanson:</string>
+    <string name="albumNameTextField">Nom de l\'album:</string>
+    <string name="albumCoverImageView">Art de couverture:</string>
+    <string name="deezerDeleteButton">Supprimer?</string>
+    <string name="deezerSaveButton">Clair</string>
 </resources>

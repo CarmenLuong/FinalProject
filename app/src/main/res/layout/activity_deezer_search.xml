@@ -36,18 +36,11 @@
                 android:textAlignment="center"
                 android:textSize="35dp" />
 
-            <ImageView
-                android:id="@+id/deezerimg"
-                android:layout_width="match_parent"
-                android:layout_height="260dp"
-                android:layout_below="@+id/mainemailpagetextview"
-                app:srcCompat="@drawable/deezer_banner" />
-
             <ImageButton
                 android:id="@+id/questionButton"
                 android:layout_width="38dp"
                 android:layout_height="27dp"
-                android:layout_below="@+id/deezerimg"
+                android:layout_below="@+id/mainemailpagetextview"
                 android:layout_marginLeft="-46dp"
                 android:layout_marginTop="1dp"
                 android:layout_toRightOf="@+id/DeezerEmail"
@@ -73,7 +66,7 @@
                 android:id="@+id/enterEmailText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/deezerimg"
+                android:layout_below="@+id/mainemailpagetextview"
                 android:layout_marginTop="0dp"
                 android:text="@string/enterYaEmail"
                 android:textSize="19dp" />

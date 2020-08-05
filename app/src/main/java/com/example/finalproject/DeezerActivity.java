@@ -85,17 +85,21 @@ public class DeezerActivity extends AppCompatActivity implements NavigationView.
         Toolbar tBar = (Toolbar)findViewById(R.id.TB);
         setSupportActionBar(tBar);
 
-        loadFromDataBase();
+
+//        loadFromDataBase();
 
         deezerLoadingBar.setVisibility(View.VISIBLE);
 
         deezerSaveButton.setOnClickListener( v -> {
-            String searchToSave = deezerSearchBox.getText().toString();
-            ContentValues newRow = new ContentValues();
-            newRow.put(DeezerDatabase.COL_SEARCH_TITLE, searchToSave);
-            long newID = sqlDB.insert(DeezerDatabase.TABLE_NAME, null, newRow);
-            DeezerArtistClass saveSearch = new DeezerArtistClass(newID, searchToSave);
-            savedArtistArray.add(saveSearch);
+//            DeezerDatabase savedDB;
+//            String searchToSave = deezerSearchBox.getText().toString();
+//            ContentValues newRow = new ContentValues();
+//            newRow.put(DeezerDatabase.COL_SEARCH_TITLE, searchToSave);
+////            long newID = sqlDB.insert(DeezerDatabase.TABLE_NAME, null, newRow);
+////            DeezerArtistClass saveSearch = new DeezerArtistClass(newID, searchToSave);
+////            savedArtistArray.add(saveSearch);
+//            savedDB = new DeezerDatabase(this);
+//            sqlDB = savedDB.getWritableDatabase();
             deezerSearchBox.setText("");
         });
 

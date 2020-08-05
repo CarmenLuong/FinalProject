@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DeezerDatabase extends SQLiteOpenHelper {
 
     protected final static String DATABASE_NAME = "DeezerDB";
-    protected final static int VERSION_NUM = 1;
+    protected final static int VERSION_NUM = 2;
     public final static String TABLE_NAME = "DEEZER_TABLE";
     public final static String COL_SEARCH_TITLE = "TITLE";
     public final static String COL_ID = "_id";
