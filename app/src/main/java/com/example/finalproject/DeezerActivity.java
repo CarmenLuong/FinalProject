@@ -376,7 +376,7 @@ public class DeezerActivity extends AppCompatActivity implements NavigationView.
                         }).create().show();
                 break;
             case R.id.abouttheapi:
-                String url = "https://rapidapi.com/deezerdevs/api/deezer-1";
+                String url = "https://developers.deezer.com/guidelines";
 
                 Intent goToapi = new Intent(Intent.ACTION_VIEW);
                 goToapi.setData(Uri.parse(url));
