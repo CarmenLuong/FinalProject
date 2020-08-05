@@ -23,4 +23,5 @@
     <string name="soccerHelp">Voici l\'activité principale de football, écrite par: Joshua Mpaka</string>
     <string name="open" />
     <string name="close" />
+    <string name="remove_from_db">Supprimer des favoris</string>
 </resources>

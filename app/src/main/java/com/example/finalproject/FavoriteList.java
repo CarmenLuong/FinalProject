@@ -3,6 +3,7 @@ package com.example.finalproject;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -16,6 +17,14 @@ public class FavoriteList extends AppCompatActivity {
     ArrayList<soccerScoreObject> favoritesList = new ArrayList<>();
     SoccerAdapter adp;
     ListView myList;
+    public static final String ITEM_ID = "id";
+    public static final String ITEM_SELECTED = "GAME";
+    public static final String ITEM_TEAM1 = "team1";
+    public static final String ITEM_TEAM2 = "team2";
+    public static final String ITEM_DATE = "date";
+    public static final String ITEM_URL = "match";
+    public static final String ITEM_IS_FAVORITE = "favorites";
+    boolean isTablet;
 
 
     @Override
@@ -23,7 +32,7 @@ public class FavoriteList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorite_list);
 
-//        myList = findViewById(R.id.FavoritesList);
+        myList = findViewById(R.id.FavoritesList);
 
         adp = new SoccerAdapter(this,R.layout.favorites_score,favoritesList);
         loadDataFromDatabase();
@@ -45,6 +54,36 @@ public class FavoriteList extends AppCompatActivity {
             }).create().show();
             return true;
         });
+
+        myList.setOnItemClickListener((list, view, position, id) -> {
+            //Create a bundle to pass data to the new fragment
+            Bundle dataToPass = new Bundle();
+            dataToPass.putLong(ITEM_ID, favoritesList.get(position).getId());
+            dataToPass.putString(ITEM_SELECTED, String.valueOf(favoritesList.get(position).getGameTitle()));
+            dataToPass.putString(ITEM_TEAM1, String.valueOf(favoritesList.get(position).getTeam1()));
+            dataToPass.putString(ITEM_TEAM2, String.valueOf(favoritesList.get(position).getTeam2()));
+            dataToPass.putString(ITEM_DATE, String.valueOf(favoritesList.get(position).getDate()));
+            dataToPass.putString(ITEM_URL, String.valueOf(favoritesList.get(position).getUrl()));
+            dataToPass.putBoolean(ITEM_IS_FAVORITE,favoritesList.get(position).isFavorite());
+
+            if(isTablet)
+            {
+                DeleteFragment delFragment = new DeleteFragment();
+                delFragment.setArguments( dataToPass );
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.frame2, delFragment)
+                        .commit();
+            }
+            else //isPhone
+            {
+                Intent nextActivity = new Intent(FavoriteList.this, DeleteEmptyActivity.class);
+                nextActivity.putExtras(dataToPass);
+                startActivity(nextActivity);
+            }
+        });
+
+
 
 
     }
@@ -78,6 +117,14 @@ public class FavoriteList extends AppCompatActivity {
     protected void deleteMessage(soccerScoreObject c)
     {
         db.delete(SoccerOpener.TABLE_NAME, SoccerOpener.COL_ID + "= ?", new String[] {Long.toString(c.getId())});
+    }
+
+    @Override
+    public void onRestart() {
+        super.onRestart();
+        finish();
+        startActivity(getIntent());
+
     }
 
 

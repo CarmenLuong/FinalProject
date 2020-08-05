@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DetailFragment"
-    android:id="@+id/frame1">
+    android:id="@+id/frame2">
 
     <LinearLayout
         android:id="@+id/Linear1"
@@ -27,19 +27,19 @@
             android:layout_height="50dp"
             android:textAlignment="center"/>
 
-            <TextView
-                android:id="@+id/team1"
-                android:layout_width="match_parent"
-                android:layout_height="85dp"
-                android:textAlignment="center"
-                tools:ignore="RtlCompat" />
+        <TextView
+            android:id="@+id/favTeam1"
+            android:layout_width="match_parent"
+            android:layout_height="85dp"
+            android:textAlignment="center"
+            tools:ignore="RtlCompat" />
 
-            <TextView
-                android:id="@+id/team2"
-                android:layout_width="match_parent"
-                android:layout_height="85dp"
-                android:textAlignment="center"
-                tools:ignore="RtlCompat" />
+        <TextView
+            android:id="@+id/favTeam2"
+            android:layout_width="match_parent"
+            android:layout_height="85dp"
+            android:textAlignment="center"
+            tools:ignore="RtlCompat" />
 
 
         <Button
@@ -50,10 +50,10 @@
             android:textAlignment="center" />
 
         <Button
-            android:id="@+id/favourite"
+            android:id="@+id/RemoveFavourite"
             android:layout_width="match_parent"
             android:layout_height="85dp"
-            android:text="Add to favourites"
+            android:text="@string/remove_from_db"
             />
 
     </LinearLayout>

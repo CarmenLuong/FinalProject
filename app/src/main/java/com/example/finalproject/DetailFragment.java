@@ -59,6 +59,9 @@ public class DetailFragment extends Fragment {
         team2.setText(dataFromActivity.getString(SoccerMain.ITEM_TEAM2));
 
         Button addToFav = (Button)result.findViewById(R.id.favourite);
+        Long mId = dataFromActivity.getLong(SoccerMain.ITEM_ID);
+
+
         addToFav.setOnClickListener(Click -> {
             String game = dataFromActivity.getString(SoccerMain.ITEM_SELECTED);
             String date = dataFromActivity.getString(SoccerMain.ITEM_DATE);

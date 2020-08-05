@@ -50,6 +50,7 @@ public class SoccerMain extends AppCompatActivity implements NavigationView.OnNa
     String title;
     String date;
     String game_url;
+    public static final String ITEM_ID = "id";
     public static final String ITEM_SELECTED = "GAME";
     public static final String ITEM_TEAM1 = "team1";
     public static final String ITEM_TEAM2 = "team2";
@@ -93,6 +94,7 @@ public class SoccerMain extends AppCompatActivity implements NavigationView.OnNa
         myList.setOnItemClickListener((list, view, position, id) -> {
             //Create a bundle to pass data to the new fragment
             Bundle dataToPass = new Bundle();
+            dataToPass.putLong(ITEM_ID, matchList.get(position).getId());
             dataToPass.putString(ITEM_SELECTED, String.valueOf(matchList.get(position).getGameTitle()));
             dataToPass.putString(ITEM_TEAM1, String.valueOf(matchList.get(position).getTeam1()));
             dataToPass.putString(ITEM_TEAM2, String.valueOf(matchList.get(position).getTeam2()));
