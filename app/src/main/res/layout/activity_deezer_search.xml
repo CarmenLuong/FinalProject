@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/TB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"/>
+
+
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:openDrawer="start"
+        >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/mainemailpagetextview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/DeezerSearchTitle"
+                android:textAlignment="center"
+                android:textSize="35dp" />
+
+            <ImageButton
+                android:id="@+id/questionButton"
+                android:layout_width="38dp"
+                android:layout_height="27dp"
+                android:layout_below="@+id/mainemailpagetextview"
+                android:layout_marginLeft="-46dp"
+                android:layout_marginTop="1dp"
+                android:layout_toRightOf="@+id/DeezerEmail"
+                app:srcCompat="@drawable/questionmarkemail" />
+
+            <EditText
+                android:id="@+id/DeezerEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/questionButton"
+                android:layout_marginTop="23dp"
+                android:hint="@string/yourEmailHere"
+                android:inputType="textEmailAddress" />
+
+            <Button
+                android:id="@+id/loginButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/DeezerEmail"
+                android:text="@string/deezerContinueButt" />
+
+            <TextView
+                android:id="@+id/enterEmailText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/mainemailpagetextview"
+                android:layout_marginTop="0dp"
+                android:text="@string/enterYaEmail"
+                android:textSize="19dp" />
+
+        </RelativeLayout>
+
+
+
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:fitsSystemWindows="true"
+            app:menu="@menu/navigation_menu" />
+
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/soccermatchitem"
+        android:title="@string/soccIconName"
+        android:icon="@drawable/soccer"
+        android:orderInCategory="100"
+        app:showAsAction="always"/>
+
+    <item android:id="@+id/geodatasourceitem"
+        android:title="@string/GEO"
+        android:icon="@drawable/geo"
+        android:orderInCategory="100"
+        app:showAsAction="always"/>
+
+    <item android:id="@+id/lyricsongsearchitem"
+        android:title="@string/lyricIconTitle"
+        android:icon="@drawable/songlyrics"
+        android:orderInCategory="100"
+        app:showAsAction="always"/>
+
+
+    <item android:id="@+id/help_item"
+        android:icon="@drawable/menu"
+        android:title="@string/aboutThisProject"
+        app:showAsAction="never"
+        android:orderInCategory="0"/>
+
+
+</menu>

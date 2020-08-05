@@ -12,6 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".DeezerListView"></activity>
+        <activity android:name=".DeezerSearchedArtist" />
+        <activity android:name=".SongListView" />
+        <activity android:name=".DeezerActivity" />
+        <activity android:name=".DeezerSearch" />
+        <activity android:name=".EmptyActivity" />
+        <activity android:name=".FavoriteDisplayed" />
 
 
         <activity android:name=".SongEmptyActivity" />
@@ -20,6 +27,8 @@
         <activity android:name=".SongLyricsPage" />
         <activity android:name=".GeoDataActivity"/>
         <activity
+            android:name=".SearchClass"
+            android:windowSoftInputMode="stateHidden" />
             android:name=".SongSearchClass"
             android:windowSoftInputMode="stateHidden"
             />
