@@ -4,14 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class EmptyActivity extends AppCompatActivity {
+public class SongEmptyActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_empty);
+        setContentView(R.layout.songactivity_empty);
         Bundle dataToPass = getIntent().getExtras();
-        DetailsFragment dFragment = new DetailsFragment();
+        SongDetailsFragment dFragment = new SongDetailsFragment();
         dFragment.setArguments( dataToPass );
         getSupportFragmentManager()
                 .beginTransaction()

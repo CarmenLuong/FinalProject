@@ -9,13 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.TextView;
 
-public class DetailsFragment extends Fragment {
+public class SongDetailsFragment extends Fragment {
     private Bundle dataFromActivity;
     private AppCompatActivity parentActivity;
-    public DetailsFragment() {
+    public SongDetailsFragment() {
 
     }
 
@@ -23,7 +22,7 @@ public class DetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         dataFromActivity = getArguments();
-        View result =  inflater.inflate(R.layout.details_fragment, container, false);
+        View result =  inflater.inflate(R.layout.songdetails_fragment, container, false);
 
 
         TextView message = (TextView)result.findViewById(R.id.fragmentTitle);

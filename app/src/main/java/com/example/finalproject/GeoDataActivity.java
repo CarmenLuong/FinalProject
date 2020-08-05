@@ -62,7 +62,7 @@ public class GeoDataActivity extends AppCompatActivity implements NavigationView
                 break;
             case R.id.songitem:
 
-                Intent goToGeo = new Intent(this, SearchClass.class);
+                Intent goToGeo = new Intent(this, SongSearchClass.class);
                 startActivity(goToGeo);
                 break;
             case R.id.deezersongsearchitem:

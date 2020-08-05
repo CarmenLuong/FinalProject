@@ -21,12 +21,12 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class SearchClass extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class SongSearchClass extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.searchclass);
+        setContentView(R.layout.songsearchclass);
 
         EditText songName;
         EditText artist;
@@ -46,7 +46,7 @@ public class SearchClass extends AppCompatActivity implements NavigationView.OnN
         favorite=findViewById(R.id.favouritesTab);
 
         search.setOnClickListener(v->
-        {Intent goToLyrics = new Intent(SearchClass.this, LyricsPage.class);
+        {Intent goToLyrics = new Intent(SongSearchClass.this, SongLyricsPage.class);
             goToLyrics.putExtra("songNameSaved", songName.getText().toString() );
             goToLyrics.putExtra("artistNameSaved", artist.getText().toString());
             songName.setText("");
@@ -57,7 +57,7 @@ public class SearchClass extends AppCompatActivity implements NavigationView.OnN
 
         favorite.setOnClickListener(v->
         {
-            Intent goTofavs = new Intent(SearchClass.this, SongListClass.class);
+            Intent goTofavs = new Intent(SongSearchClass.this, SongListClass.class);
             startActivity(goTofavs);
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -82,10 +82,10 @@ public class SearchClass extends AppCompatActivity implements NavigationView.OnN
         } );
 
         help.setOnClickListener(v->{
-            AlertDialog.Builder alterDialogueBilder = new AlertDialog.Builder(SearchClass.this);
+            AlertDialog.Builder alterDialogueBilder = new AlertDialog.Builder(SongSearchClass.this);
             alterDialogueBilder.setMessage("Simply type in your desired song and the artist or group's name that you're looking for, then hit search!\n\nYou can select your favorites, look at them later, and if theres anything that you cant find seem to find through us, you can google it!")
                     .setPositiveButton("Okay", (Click, arg) -> {
-                        Intent goBack = new Intent(SearchClass.this, SearchClass.class);
+                        Intent goBack = new Intent(SongSearchClass.this, SongSearchClass.class);
                         startActivity(goBack);
                     }).create().show();
 

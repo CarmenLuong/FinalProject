@@ -14,13 +14,13 @@
         android:usesCleartextTraffic="true">
 
 
-        <activity android:name=".EmptyActivity" />
-        <activity android:name=".FavoriteDisplayed" />
+        <activity android:name=".SongEmptyActivity" />
+        <activity android:name=".SongFavoriteDisplayed" />
         <activity android:name=".SongListClass" />
-        <activity android:name=".LyricsPage" />
+        <activity android:name=".SongLyricsPage" />
         <activity android:name=".GeoDataActivity"/>
         <activity
-            android:name=".SearchClass"
+            android:name=".SongSearchClass"
             android:windowSoftInputMode="stateHidden"
             />
         <activity

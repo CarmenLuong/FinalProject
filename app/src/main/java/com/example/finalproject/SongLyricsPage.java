@@ -13,14 +13,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -30,9 +28,6 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONObject;
-import org.w3c.dom.Text;
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -40,7 +35,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class LyricsPage extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class SongLyricsPage extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     ProgressBar prog;
     String songName;
     String artistName;
@@ -51,7 +46,7 @@ public class LyricsPage extends AppCompatActivity implements NavigationView.OnNa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lyricspage);
+        setContentView(R.layout.songlyricspage);
         Button favoriteB;
         Button goB;
         prog = findViewById(R.id.progBar);
@@ -63,7 +58,7 @@ public class LyricsPage extends AppCompatActivity implements NavigationView.OnNa
         setSupportActionBar(tBar);
 
         goB.setOnClickListener(v->{
-            Intent goBack = new Intent(LyricsPage.this, SearchClass.class);
+            Intent goBack = new Intent(SongLyricsPage.this, SongSearchClass.class);
             startActivity(goBack);
         });
         favoriteB.setOnClickListener(v->{
@@ -124,7 +119,7 @@ public class LyricsPage extends AppCompatActivity implements NavigationView.OnNa
                 break;
             case R.id.geodatasourceitem:
 
-                Intent goToGeo = new Intent(this, MainActivity.class);
+                Intent goToGeo = new Intent(this, GeoDataActivity.class);
                 startActivity(goToGeo);
                 break;
             case R.id.deezersongsearchitem:
@@ -236,10 +231,10 @@ public class LyricsPage extends AppCompatActivity implements NavigationView.OnNa
             TextView lyricTitle = findViewById(R.id.LyricsPageTitle);
 
             if (lyricss==null) {
-                AlertDialog.Builder alterDialogueBilder = new AlertDialog.Builder(LyricsPage.this);
+                AlertDialog.Builder alterDialogueBilder = new AlertDialog.Builder(SongLyricsPage.this);
                 alterDialogueBilder.setTitle("Could not generate results for:").setMessage("\nSong: \"" + songName + "\", Artist: \"" + artistName + "\"")
                         .setPositiveButton("Okay", (Click, arg) -> {
-                            Intent goBack = new Intent(LyricsPage.this, SearchClass.class);
+                            Intent goBack = new Intent(SongLyricsPage.this, SongSearchClass.class);
                             startActivity(goBack);
                         }).create().show();
             } else {

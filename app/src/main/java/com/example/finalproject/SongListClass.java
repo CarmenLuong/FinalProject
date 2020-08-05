@@ -79,7 +79,7 @@ public class SongListClass extends AppCompatActivity implements NavigationView.O
             Bundle dataToPass = new Bundle();
             dataToPass.putString(ITEM_SONGN, String.valueOf(elements.get(position).getSong() ));
             dataToPass.putString(ITEM_LYRICS, (elements.get(position).getlyrics()));
-            Intent nextActivity = new Intent(SongListClass.this, EmptyActivity.class);
+            Intent nextActivity = new Intent(SongListClass.this, SongEmptyActivity.class);
             nextActivity.putExtras(dataToPass);
             startActivity(nextActivity);
         });
@@ -117,7 +117,7 @@ public class SongListClass extends AppCompatActivity implements NavigationView.O
                 break;
             case R.id.geodatasourceitem:
 
-                Intent goToGeo = new Intent(this, MainActivity.class);
+                Intent goToGeo = new Intent(this, GeoDataActivity.class);
                 startActivity(goToGeo);
                 break;
             case R.id.deezersongsearchitem:
@@ -232,7 +232,7 @@ public class SongListClass extends AppCompatActivity implements NavigationView.O
         public View getView(int position, View convertView, ViewGroup parent) {
             LayoutInflater inflater = getLayoutInflater();
             SongAndArtist songAndArtist = getItem(position);
-            View view = inflater.inflate(R.layout.favoritedisplayed, parent, false);
+            View view = inflater.inflate(R.layout.songfavoritedisplayed, parent, false);
             TextView text = view.findViewById(R.id.textHere);
             text.setText("Song name: " + songAndArtist.getSong() + ", Artist: " + songAndArtist.getArtist());
             return view;

@@ -1,6 +1,5 @@
 package com.example.finalproject;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,7 +24,6 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 
-import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
 
@@ -74,7 +72,7 @@ public class SongSearch extends AppCompatActivity implements NavigationView.OnNa
                 }
 
             } else {
-                Intent goToProfile = new Intent(SongSearch.this, SearchClass.class);
+                Intent goToProfile = new Intent(SongSearch.this, SongSearchClass.class);
 
                 goToProfile.putExtra("email", savedString);
                 startActivity(goToProfile);
@@ -113,7 +111,7 @@ public class SongSearch extends AppCompatActivity implements NavigationView.OnNa
                 break;
             case R.id.geodatasourceitem:
 
-                Intent goToGeo = new Intent(SongSearch.this, MainActivity.class);
+                Intent goToGeo = new Intent(SongSearch.this, GeoDataActivity.class);
                 startActivity(goToGeo);
                 break;
             case R.id.deezersongsearchitem:
