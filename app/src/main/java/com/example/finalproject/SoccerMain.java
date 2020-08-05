@@ -190,7 +190,7 @@ public class SoccerMain extends AppCompatActivity implements NavigationView.OnNa
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         AlertDialog.Builder alterDialogueBuilder;
-        String message = "you have selected the navigation menu";
+        String message = "you have selected an item in the navigation menu";
 
         switch(menuItem.getItemId())
         {
