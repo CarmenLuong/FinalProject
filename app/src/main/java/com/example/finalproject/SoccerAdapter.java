@@ -24,6 +24,12 @@ public class SoccerAdapter extends BaseAdapter {
         this.layoutRes = layoutRes;
     }
 
+    /**
+     *
+     * this class allows the fragment to be inflated from the list view
+     *
+     */
+
 
 
     @Override
@@ -42,10 +48,20 @@ public class SoccerAdapter extends BaseAdapter {
         return matchList.get(position).getId();
     }
 
+    /**
+     * this method will select the the proper view to inflated in order see the list of games
+     *
+     * @param position
+     * @param convertView
+     * @param parent
+     * @return view
+     */
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
         View view = convertView;
+
 
 
         soccerScoreObject matchScore = (soccerScoreObject) getItem(position);
@@ -67,6 +83,12 @@ public class SoccerAdapter extends BaseAdapter {
 
         return view;
     }
+
+    /**
+     *
+     * this method is setting the data list for the list view when called upon
+     * @param mListInfo
+     */
 
     public void setListData(ArrayList<soccerScoreObject> mListInfo){
         this.matchList = mListInfo;

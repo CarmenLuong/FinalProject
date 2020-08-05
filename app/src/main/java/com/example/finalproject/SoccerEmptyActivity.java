@@ -6,6 +6,12 @@ import android.os.Bundle;
 
 public class SoccerEmptyActivity extends AppCompatActivity {
 
+    /**
+     * this loads the data from the previous activity and into this empty activity, in order to visualize
+     * a match from the list view
+     * @param savedInstanceState
+     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

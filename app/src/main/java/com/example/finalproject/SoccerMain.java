@@ -41,10 +41,8 @@ import java.util.ArrayList;
 
 public class SoccerMain extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     ArrayList<soccerScoreObject> matchList = new ArrayList<>();
-     SQLiteDatabase db;
      SoccerAdapter adp;
      ListView myList;
-     TextView scores;
      String team1, team2;
      String title;
      String date;
@@ -92,7 +90,12 @@ public class SoccerMain extends AppCompatActivity implements NavigationView.OnNa
         adp = new SoccerAdapter(this,R.layout.game_score,matchList);
         adp.setListData(matchList);
         myList.setAdapter(adp);
-//        loadDataFromDatabase();
+
+        /**
+         *
+         * this button will allow a user to click on a specific game and see a detailed page with the 2 teams,
+         * the date and buttons to watch the highlights or add the match to favourites
+         */
 
 
         myList.setOnItemClickListener((list, view, position, id) -> {
@@ -125,6 +128,10 @@ public class SoccerMain extends AppCompatActivity implements NavigationView.OnNa
 
         favButton = findViewById(R.id.FavButton);
 
+        /**
+         * this button allows the user to view their favourites list
+         */
+
         favButton.setOnClickListener( click -> {
             Intent SeeFavorites = new Intent(SoccerMain.this, SoccerFavoriteList.class);
             startActivity(SeeFavorites);
@@ -139,6 +146,13 @@ public class SoccerMain extends AppCompatActivity implements NavigationView.OnNa
         inflater.inflate(R.menu.item_menu, menu);
         return true;
     }
+
+    /**
+     * this allows the user to navigate along the tool bar and see other applications within the master application
+     *
+     * @param item
+     * @return true
+     */
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -167,6 +181,12 @@ public class SoccerMain extends AppCompatActivity implements NavigationView.OnNa
         return true;
     }
 
+    /**
+     * this method allows the user to navigate through the drawer menu to see the different options available
+     * @param menuItem
+     * @return false
+     */
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         AlertDialog.Builder alterDialogueBuilder;
@@ -184,7 +204,7 @@ public class SoccerMain extends AppCompatActivity implements NavigationView.OnNa
                 break;
 
                 case R.id.abouttheapi:
-                String url = "https://lyricovh.docs.apiary.io/#";
+                String url = "https://www.scorebat.com/video-api/v1/";
                 Intent goToApi = new Intent(Intent.ACTION_VIEW);
                 goToApi.setData(Uri.parse(url));
                 startActivity(goToApi);
@@ -228,6 +248,13 @@ public class SoccerMain extends AppCompatActivity implements NavigationView.OnNa
 
         String link = "https://www.scorebat.com/video-api/v1/";
 
+        /**
+         *
+         * this method is grabbing JSON objects within a JSON array from the api
+         * this allows the app to grab the information needed to display
+         * @param args
+         * @return
+         */
 
         @Override
         protected String doInBackground(String... args) {

@@ -17,6 +17,13 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
+/**
+ *
+ * this class allows the user to visualize the fragment in the activity delete fragment
+ * from the list view, here you will find the match highlights, the date, the two teams and
+ * the remove from favourites button
+ */
+
 public class SoccerDeleteFragment extends Fragment {
 
     ArrayList<soccerScoreObject> favoritesList = new ArrayList<>();
@@ -59,6 +66,11 @@ public class SoccerDeleteFragment extends Fragment {
         TextView team2 = (TextView)result.findViewById(R.id.favTeam2);
         team2.setText(dataFromActivity.getString(SoccerFavoriteList.ITEM_TEAM2));
 
+        /**
+         *
+         * this button allows the user to watch the highlights of the specific game in a webview
+         */
+
         Button watchHighlights = (Button)result.findViewById(R.id.watchHighlights);
         watchHighlights.setOnClickListener( click -> {
             Bundle urlToPass = new Bundle();
@@ -69,6 +81,11 @@ public class SoccerDeleteFragment extends Fragment {
             intent.putExtras(urlToPass);
             startActivity(intent);
         });
+
+        /**
+         *
+         * this button removes the match from favourites and deletes it from the database
+         */
 
         Button deleteFromDb = (Button)result.findViewById(R.id.RemoveFavourite);
         deleteFromDb.setOnClickListener( click -> {

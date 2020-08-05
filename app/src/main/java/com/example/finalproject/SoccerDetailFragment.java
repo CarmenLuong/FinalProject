@@ -18,6 +18,13 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
+/**
+ *
+ * this class allows the user to visualize the fragment in the activity detail fragment
+ * from the list view, here you will find the match highlights, the date, the two teams and
+ * the remove from favourites button
+ */
+
 public class SoccerDetailFragment extends Fragment {
 
     ArrayList<soccerScoreObject> favoritesList = new ArrayList<>();
@@ -64,6 +71,12 @@ public class SoccerDetailFragment extends Fragment {
         Button addToFav = (Button)result.findViewById(R.id.favourite);
         Long mId = dataFromActivity.getLong(SoccerMain.ITEM_ID);
 
+        /**
+         *
+         * this button will save the matches to favourites pages, and saving it to the database
+         *
+         */
+
 
         addToFav.setOnClickListener(Click -> {
                 
@@ -82,6 +95,11 @@ public class SoccerDetailFragment extends Fragment {
 
         });
 
+        /**
+         *
+         * this button allows the user to watch the highlights of the specific game in a webview
+         */
+
         Button watchHighlights = (Button)result.findViewById(R.id.watchHighlights);
         watchHighlights.setOnClickListener( click -> {
             Bundle urlToPass = new Bundle();
@@ -92,20 +110,11 @@ public class SoccerDetailFragment extends Fragment {
                 intent.putExtras(urlToPass);
                 startActivity(intent);
 
-//            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(dataFromActivity.getString(SoccerMain.ITEM_URL)));
-//            startActivity(browserIntent);
         });
 
         return result;
     }
 
-    public boolean contains(ArrayList<soccerScoreObject> matches, soccerScoreObject game){
-        for(soccerScoreObject e : matches){
-            if(e.equals(game))
-                return true;
-        }
-        return false;
-    }
 
 
     @Override
