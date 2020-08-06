@@ -96,7 +96,7 @@ public class DeezerSearchedArtist extends AppCompatActivity {
     }
 
     /**
-     * secondQuery is intended to use the url and title passed from the DeezerActivity class to collect the remaining information to present the user
+     * DeezerQuery is intended to search the api and collect information releveant to the users search
      */
 
     private class DeezerQuery extends AsyncTask<String, Integer, String>{
@@ -191,7 +191,7 @@ public class DeezerSearchedArtist extends AppCompatActivity {
 
                             } catch (Exception e){
                                 e.printStackTrace();
-                                Log.e("DeezerActivity", "I fucked up");
+                                Log.e("DeezerActivity", "fallen into exception in DeezerSearchedArtist AsyncTask");
                             }
 //                            String imageFileName = albumCoverUrl;
 //                            try{

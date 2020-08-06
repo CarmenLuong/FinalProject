@@ -95,15 +95,15 @@ public class DeezerActivity extends AppCompatActivity implements NavigationView.
         deezerLoadingBar.setVisibility(View.VISIBLE);
 
         deezerSaveButton.setOnClickListener( v -> {
-            DeezerDatabase savedDB;
-            String searchToSave = deezerSearchBox.getText().toString();
-            ContentValues newRow = new ContentValues();
-            newRow.put(DeezerDatabase.COL_SEARCH_TITLE, searchToSave);
-            long newID = sqlDB.insert(DeezerDatabase.TABLE_NAME, null, newRow);
-            DeezerArtistClass saveSearch = new DeezerArtistClass(newID, searchToSave);
-            savedArtistArray.add(saveSearch);
-            savedDB = new DeezerDatabase(this);
-            sqlDB = savedDB.getWritableDatabase();
+//            DeezerDatabase savedDB;
+//            String searchToSave = deezerSearchBox.getText().toString();
+//            ContentValues newRow = new ContentValues();
+//            newRow.put(DeezerDatabase.COL_SEARCH_TITLE, searchToSave);
+//            long newID = sqlDB.insert(DeezerDatabase.TABLE_NAME, null, newRow);
+//            DeezerArtistClass saveSearch = new DeezerArtistClass(newID, searchToSave);
+//            savedArtistArray.add(saveSearch);
+//            savedDB = new DeezerDatabase(this);
+//            sqlDB = savedDB.getWritableDatabase();
             deezerSearchBox.setText("");
         });
 
@@ -330,7 +330,7 @@ public class DeezerActivity extends AppCompatActivity implements NavigationView.
 
                             } catch (Exception e){
                             e.printStackTrace();
-                            Log.e("DeezerActivity", "I fucked up");
+                            Log.e("DeezerActivity", "fallen into exception in DeezerSearchedArtist AsyncTask");
                             }
 //                            String imageFileName = albumCoverUrl;
 //                            try{

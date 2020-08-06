@@ -50,4 +50,5 @@
     <string name="albumCoverImageView">Art de couverture:</string>
     <string name="deezerDeleteButton">Supprimer?</string>
     <string name="deezerSaveButton">Clair</string>
+    <string name="deezerFavouriteButton">Préféré?</string>
 </resources>
