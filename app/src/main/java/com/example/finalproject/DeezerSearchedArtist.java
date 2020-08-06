@@ -57,6 +57,7 @@ public class DeezerSearchedArtist extends AppCompatActivity {
 
         fromDeezerActivity = getIntent();
         String savedUrl = fromDeezerActivity.getStringExtra("Url");
+
         SecondQuery query = new SecondQuery();
         query.execute(savedUrl);
 

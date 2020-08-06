@@ -65,7 +65,7 @@ public class DeezerActivity extends AppCompatActivity implements NavigationView.
     String songTitle;
     String albumName;
     String iconName;
-    ArrayList<DeezerArtistClass> savedArtistArray;
+    ArrayList<DeezerArtistClass> savedArtistArray = new ArrayList<>();
     SQLiteDatabase sqlDB;
 
     /**
@@ -95,15 +95,15 @@ public class DeezerActivity extends AppCompatActivity implements NavigationView.
         deezerLoadingBar.setVisibility(View.VISIBLE);
 
         deezerSaveButton.setOnClickListener( v -> {
-//            DeezerDatabase savedDB;
-//            String searchToSave = deezerSearchBox.getText().toString();
-//            ContentValues newRow = new ContentValues();
-//            newRow.put(DeezerDatabase.COL_SEARCH_TITLE, searchToSave);
-////            long newID = sqlDB.insert(DeezerDatabase.TABLE_NAME, null, newRow);
-////            DeezerArtistClass saveSearch = new DeezerArtistClass(newID, searchToSave);
-////            savedArtistArray.add(saveSearch);
-//            savedDB = new DeezerDatabase(this);
-//            sqlDB = savedDB.getWritableDatabase();
+            DeezerDatabase savedDB;
+            String searchToSave = deezerSearchBox.getText().toString();
+            ContentValues newRow = new ContentValues();
+            newRow.put(DeezerDatabase.COL_SEARCH_TITLE, searchToSave);
+            long newID = sqlDB.insert(DeezerDatabase.TABLE_NAME, null, newRow);
+            DeezerArtistClass saveSearch = new DeezerArtistClass(newID, searchToSave);
+            savedArtistArray.add(saveSearch);
+            savedDB = new DeezerDatabase(this);
+            sqlDB = savedDB.getWritableDatabase();
             deezerSearchBox.setText("");
         });
 
@@ -120,10 +120,11 @@ public class DeezerActivity extends AppCompatActivity implements NavigationView.
                 DeezerQuery query = new DeezerQuery();
                 query.execute("https://api.deezer.com/search/artist/?q=" + searchedString + "&output=xml");
                 Log.e("DeezerActivity", "should run query");
-                Log.i("DeezerActivity", "The variables are: " + songTitle + " " + songDuration + " " + songTitle + " " + albumCoverUrl + " " + tracklist);
+              //  Log.i("DeezerActivity", "The variables are: " + songTitle + " " + songDuration + " " + songTitle + " " + albumCoverUrl + " " + tracklist);
                 Intent goToDeezerSearchedArtist = new Intent(DeezerActivity.this, DeezerSearchedArtist.class);
                 goToDeezerSearchedArtist.putExtra("Url", tracklist);
                 goToDeezerSearchedArtist.putExtra("artistTitle", songTitle);
+                goToDeezerSearchedArtist.putExtra("artistArrayList", savedArtistArray);
 //                goToDeezerSearchedArtist.putExtra("songDuration", songDuration);
 //                goToDeezerSearchedArtist.putExtra("albumName", albumName);
                 startActivity(goToDeezerSearchedArtist);
@@ -281,57 +282,79 @@ public class DeezerActivity extends AppCompatActivity implements NavigationView.
 
 
                                 // convert string to JSON: Look at slide 27:
-                                JSONObject artistInfo = new JSONObject(result);
+//                                JSONObject artistInfo = new JSONObject(result);
+//
 
+
+                                Log.e("DeezerActivity", "opened "+ tracklist +" url");
+                                Log.e("DeezerActivity", "result string is " + result);
+
+                                JSONObject artistInfo = new JSONObject(result);
                                 JSONArray artistData = artistInfo.getJSONArray("data");
 
-
                                 for(int i = 0; i < artistData.length(); i++) {
+                                    JSONObject jsonObject = artistData.getJSONObject(i);
 
-                                    songTitle = artistData.getJSONObject(i).getString("title");
+
+                                    songTitle = jsonObject.getString("title");
 //                                    songDuration = String.valueOf((String) artistInfo.getString("duration"));
 //                                    albumName = String.valueOf((String) artistInfo.getString("album"));
 //                                    albumCoverUrl = String.valueOf((String) artistInfo.getString("cover"));
-                                   // savedArtistArray.add(new DeezerArtistClass(songTitle));
+                                    savedArtistArray.add(new DeezerArtistClass(songTitle));
+                                    Log.i("DeezerActivity", "The song titles are: " + songTitle) ;
 
                                 }
-                                Log.i("DeezerActivity", savedArtistArray.toString());
-                                Log.i("DeezerActivity", "The variables are: " + songTitle + " " + songDuration + " " + songTitle + " " + albumCoverUrl + " " + tracklist) ;
+
+//                                for (int i = 0 ; i < artistData.length() ; i++) {
+//                                    Log.e("DeezerActivity", "Made it in the first loop");
+//                                    JSONObject jsonObject = artistInfo.getJSONObject(i);
+//                                    JSONArray artistData = jsonObject.getJSONArray("data");
+//                                    for (int l = 0; l < artistData.length(); l++) {
+//                                        Log.e("DeezerActivity", "Made it in the second loop");
+//                                        jsonObject = artistData.getJSONObject(l);
+//                                        songTitle = jsonObject.getString("title");
+//                                        Log.i("DeezerActivity", "The song titles are: " + songTitle) ;
+//                                    }
+//                                }
+
+                                Log.i("DeezerActivity", "The array of titles is" + savedArtistArray.toString());
+                               // Log.i("DeezerActivity", "The variables are: " + songTitle + " " + songDuration + " " + songTitle + " " + albumCoverUrl + " " + tracklist) ;
 
                             } catch (Exception e){
-
+                            e.printStackTrace();
+                            Log.e("DeezerActivity", "I fucked up");
                             }
-                            String imageFileName = albumCoverUrl;
-                            try{
-                                if(!fileExistance(imageFileName)) {
-                                    albumCoverImage = null;
-
-                                    URL url = new URL(albumCoverUrl);
-
-                                    urlConnection = (HttpURLConnection) url.openConnection();
-                                    urlConnection.connect();
-                                    int responseCode = urlConnection.getResponseCode();
-                                    if (responseCode == 200) {
-                                        albumCoverImage = BitmapFactory.decodeStream(urlConnection.getInputStream());
-                                        publishProgress(100);
-                                    }
-                                    FileOutputStream outputStream = openFileOutput(imageFileName, Context.MODE_PRIVATE);
-                                    albumCoverImage.compress(Bitmap.CompressFormat.PNG, 80, outputStream);
-                                    outputStream.flush();
-                                    outputStream.close();
-                                    Log.i("DeezerActivity", "Image downloaded");
-                                } else{
-                                    FileInputStream fis = null;
-                                    try {    fis = openFileInput(imageFileName);   }
-                                    catch (FileNotFoundException e) {    e.printStackTrace();  }
-                                    albumCoverImage = BitmapFactory.decodeStream(fis);
-                                    Log.i("DeezerActivity", "Image used from " + iconName + ".png, already downloaded");
-
-                                }
-
-                            } catch(Exception e){
-
-                            }
+//                            String imageFileName = albumCoverUrl;
+//                            try{
+//                                if(!fileExistance(imageFileName)) {
+//                                    albumCoverImage = null;
+//
+//                                    URL url = new URL(albumCoverUrl);
+//
+//                                    urlConnection = (HttpURLConnection) url.openConnection();
+//                                    urlConnection.connect();
+//                                    int responseCode = urlConnection.getResponseCode();
+//                                    if (responseCode == 200) {
+//                                        albumCoverImage = BitmapFactory.decodeStream(urlConnection.getInputStream());
+//                                        publishProgress(100);
+//                                    }
+//                                    FileOutputStream outputStream = openFileOutput(imageFileName, Context.MODE_PRIVATE);
+//                                    albumCoverImage.compress(Bitmap.CompressFormat.PNG, 80, outputStream);
+//                                    outputStream.flush();
+//                                    outputStream.close();
+//                                    Log.i("DeezerActivity", "Image downloaded");
+//                                } else{
+//                                    FileInputStream fis = null;
+//                                    try {    fis = openFileInput(imageFileName);   }
+//                                    catch (FileNotFoundException e) {    e.printStackTrace();  }
+//                                    albumCoverImage = BitmapFactory.decodeStream(fis);
+//                                    Log.i("DeezerActivity", "Image used from " + iconName + ".png, already downloaded");
+//
+//                                }
+//
+//                            } catch(Exception e){
+//
+//                            }
                         }
                     }
                     eventType = xpp.next(); //move to the next xml event and store it in a variable
