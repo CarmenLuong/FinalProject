@@ -39,6 +39,7 @@ public class DeezerListView extends AppCompatActivity {
         ListAdapter myListAdapter = new ListAdapter();
         deezerList.setAdapter(myListAdapter);
 
+
 //        loadFromDataBase();
 
 

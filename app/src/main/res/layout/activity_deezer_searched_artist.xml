@@ -6,41 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".DeezerSearchedArtist">
 
-    <TextView
-        android:id="@+id/artistTitleText"
+    <ListView
+        android:id="@+id/deezerArrayList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/artistTitleTextField"
-        android:gravity="center"
-        android:textSize="24dp"
-        />
-
-    <TextView
-        android:id="@+id/durationTextField"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/durationTextField"
-        android:layout_below="@+id/artistTitleText"
-        android:gravity="center"
-        android:textSize="24dp"
-        />
-
-    <TextView
-        android:id="@+id/albumNameTextField"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:layout_below="@id/durationTextField"
-        android:gravity="center"
-        android:textSize="24dp"
-        />
-
-    <ImageView
-        android:id="@+id/albumArtField"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:gravity="center"
+        android:layout_alignParentTop="true"
         />
 
 

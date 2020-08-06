@@ -117,14 +117,22 @@ public class DeezerActivity extends AppCompatActivity implements NavigationView.
             //clear arraylist for listview
             searchedString = deezerSearchBox.getText().toString().replace(" ", "%20");
             if (!searchedString.equals("")) {
-                DeezerQuery query = new DeezerQuery();
-                query.execute("https://api.deezer.com/search/artist/?q=" + searchedString + "&output=xml");
+//                DeezerQuery query = new DeezerQuery();
+//                query.execute("https://api.deezer.com/search/artist/?q=" + searchedString + "&output=xml");
                 Log.e("DeezerActivity", "should run query");
               //  Log.i("DeezerActivity", "The variables are: " + songTitle + " " + songDuration + " " + songTitle + " " + albumCoverUrl + " " + tracklist);
+
+
+//                Bundle extra = new Bundle();
+//                extra.putSerializable("artistArrayList", savedArtistArray);
+
                 Intent goToDeezerSearchedArtist = new Intent(DeezerActivity.this, DeezerSearchedArtist.class);
+                goToDeezerSearchedArtist.putExtra("searchedString", searchedString);
                 goToDeezerSearchedArtist.putExtra("Url", tracklist);
-                goToDeezerSearchedArtist.putExtra("artistTitle", songTitle);
-                goToDeezerSearchedArtist.putExtra("artistArrayList", savedArtistArray);
+//                goToDeezerSearchedArtist.putExtra("artistTitle", songTitle);
+
+
+//                goToDeezerSearchedArtist.putExtra("extra", extra);
 //                goToDeezerSearchedArtist.putExtra("songDuration", songDuration);
 //                goToDeezerSearchedArtist.putExtra("albumName", albumName);
                 startActivity(goToDeezerSearchedArtist);
